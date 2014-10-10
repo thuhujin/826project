@@ -1,0 +1,45 @@
+Next we list the papers that each member read,
+along with their summary and critique.
+Table \ref{tab:symbols} gives a list of common symbols we used.
+
+\subsection{Papers read by Jin Hu}
+The first paper was the GBASE paper by U Kang
+\cite{$\ldots$}
+\begin{itemize*}
+\item {\em Main idea}: The paper introduces a general graph management system GBase for large scale graph storage and computation.
+\item {\em The main contribution of the paper:}:
+      GBase uses "compressed block encoding" method to make graph storage more efficiently.
+    For graph indexing, the paper succeeds in handling multiple type of queries on a large graph instead of a specific type and
+    is suitable for distributed environment. By supporting homogeneous block level indexing and being flexible in both edge and node
+    centralized computing, GBase has better properties than similar distributed systems.
+    The framework the paper proposes also supported both graph-level and node-level queries, making it applicable to various applications.
+    GBase partitions data in two dimensions to better use the block and community-like properties of real-world graphs,
+    which gives it advantage over either row-oriented or column-oriented storages.
+\item {\em Limitations}:
+      The paper's indexing method handles large graphs successfully, but its property compared to frequent subgraph
+    or significant graph pattern methods are not shown in the experiment. Optional indexing methods may be added to
+    the system.
+\end{itemize*}
+
+The second paper was by Danai Koutra
+\cite{koutra}
+\begin{itemize*}
+\item {\em Main idea}: The paper does the comparison among some of the most popular guilt-by-association method.
+\item {\em The main contribution of the paper:}:
+      The paper manages to prove that all methods result in a similar matrix inversion problem. In addition, the paper proposes a fast and accurate BP algorithm. In theory, the paper finds that RWR(Personalized Random Walk with Restats), SSL(Semi-Supervised Learning) and BP(Belief Propagation) are closely related, but not the same. RWR and SSL are not heterophily, but BP is heterophily. All three methods are scalable. RWR and SSL have convergence while BP is unknown. The proposed FABP method has nice property with all these perspectives. The experiments also verify the paper's ideas.
+\end{itemize*}
+
+The third paper was by Ignacio Alvarez-Hamelin
+\cite{$\ldots$)
+\begin{itemize*}
+\item {\em Main idea}: 
+The paper introduces K-core decomposition and its application in the visulization of large scale networks.
+\item {\em The main contribution of the paper:}:
+      As K-core decomposition can produce two-dimensional layout of large scale networks with their important topological and hierarchical properties, the paper takes advantage of the K-core algorithm to allow visulization of network and offer features like fingerprint identification and general analysis assistance. The visualization algorithm has linear running time proportional to the size of the network, making it well scalable for large networks. In addition, the algorithm offers 2D representation of networks which makes information visualization more accessible than other representations and the parameters of the algorithm are universally defined, which makes it suitable for all types of networks.
+\item {\em Limitations}:
+      The proposed visualization algorithm still utilizes certain parameters to identify the properties of the network, which involves considerable human interactions and prior expemental knowledge. Self adjusting parameters might be a huge improvement and can be an interesting topic to follow.
+\end{itemize*}
+
+\subsection{Papers read by Ye Zhou }
+
+$\ldots$

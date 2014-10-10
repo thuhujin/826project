@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 Notes:
 
 The packaged bash script can be used to setup a functional installation of all the components necessary to run the graphminer code (assuming Python is installed by default, if not - please install it).  The installed components are:
@@ -19,3 +20,15 @@ FYI: many Andrew systems are on csh/tcsh so you will need to remember to change 
 3) Type 'source setup-proj.bash' in your terminal to begin the installation process.  The code should install the necessary components in the directory you specified and in the end run the example provided in the graphminer code to assure functionality.  If you run './setup-proj.bash' the environment variable exports will not persist to your shell after execution and you will have to re-connect to the machine to use graphminer again.
 
 4) For future uses (after signing off of the system), you can check to see if postgres is running with 'ps aux | grep postgres' in terminal.  If postgres is not running, you can start it from the PREFIX directory you specified using './postgres/bin/postgres -p $POSTGRESPORT -D postgres/data/ >& logfile &'.  Remember to use bash or environment variables will not be set properly by default.
+=======
+-- Author: christos faloutsos
+-- Date: Sept. 17, 2012
+
+INSTRUCTIONS:
+    type
+       make
+    to create a sample pdf paper
+
+WHAT:
+    This is a template for papers, and more specifically for 15-826 projects
+>>>>>>> 0a7659be3dd0cb2767a1d8f6896cd66fb9d0f76d
