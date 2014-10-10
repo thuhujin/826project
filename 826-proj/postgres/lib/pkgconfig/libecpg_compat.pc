@@ -1,0 +1,9 @@
+Name: libecpg_compat
+Description: PostgreSQL libecpg_compat library
+Url: http://www.postgresql.org/
+Version: 9.5devel
+Requires: 
+Requires.private: libecpg libpgtypes
+Cflags: -I/afs/andrew.cmu.edu/usr14/jinh/826-proj/postgres/include
+Libs: -L/afs/andrew.cmu.edu/usr14/jinh/826-proj/postgres/lib -lecpg_compat
+Libs.private:  -lpq -lm -lpthread

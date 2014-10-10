@@ -1,0 +1,1 @@
+/afs/andrew.cmu.edu/usr14/jinh/826-proj/postgres/bin/postgres "-p" "5432" "-D" "/afs/andrew.cmu.edu/usr14/jinh/826-proj/postgres/data/"
