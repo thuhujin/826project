@@ -1,0 +1,301 @@
+This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2014) (preloaded format=pdflatex 2014.5.25)  10 OCT 2014 14:39
+entering extended mode
+ restricted \write18 enabled.
+ %&-line parsing enabled.
+**paper.tex
+(./paper.tex
+LaTeX2e <2014/05/01>
+Babel <3.9k> and hyphenation patterns for 78 languages loaded.
+(/usr/local/texlive/2014/texmf-dist/tex/latex/base/article.cls
+Document Class: article 2007/10/19 v1.4h Standard LaTeX document class
+(/usr/local/texlive/2014/texmf-dist/tex/latex/base/size12.clo
+File: size12.clo 2007/10/19 v1.4h Standard LaTeX file (size option)
+)
+\c@part=\count79
+\c@section=\count80
+\c@subsection=\count81
+\c@subsubsection=\count82
+\c@paragraph=\count83
+\c@subparagraph=\count84
+\c@figure=\count85
+\c@table=\count86
+\abovecaptionskip=\skip41
+\belowcaptionskip=\skip42
+\bibindent=\dimen102
+)
+(/usr/local/texlive/2014/texmf-dist/tex/latex/preprint/fullpage.sty
+Package: fullpage 1999/02/23 1.1 (PWD)
+\FP@margin=\skip43
+)
+(/usr/local/texlive/2014/texmf-dist/tex/latex/graphics/graphicx.sty
+Package: graphicx 2014/04/25 v1.0g Enhanced LaTeX Graphics (DPC,SPQR)
+
+(/usr/local/texlive/2014/texmf-dist/tex/latex/graphics/keyval.sty
+Package: keyval 2014/05/08 v1.15 key=value parser (DPC)
+\KV@toks@=\toks14
+)
+(/usr/local/texlive/2014/texmf-dist/tex/latex/graphics/graphics.sty
+Package: graphics 2009/02/05 v1.0o Standard LaTeX Graphics (DPC,SPQR)
+
+(/usr/local/texlive/2014/texmf-dist/tex/latex/graphics/trig.sty
+Package: trig 1999/03/16 v1.09 sin cos tan (DPC)
+)
+(/usr/local/texlive/2014/texmf-dist/tex/latex/latexconfig/graphics.cfg
+File: graphics.cfg 2010/04/23 v1.9 graphics configuration of TeX Live
+)
+Package graphics Info: Driver file: pdftex.def on input line 91.
+
+(/usr/local/texlive/2014/texmf-dist/tex/latex/pdftex-def/pdftex.def
+File: pdftex.def 2011/05/27 v0.06d Graphics/color for pdfTeX
+
+(/usr/local/texlive/2014/texmf-dist/tex/generic/oberdiek/infwarerr.sty
+Package: infwarerr 2010/04/08 v1.3 Providing info/warning/error messages (HO)
+)
+(/usr/local/texlive/2014/texmf-dist/tex/generic/oberdiek/ltxcmds.sty
+Package: ltxcmds 2011/11/09 v1.22 LaTeX kernel commands for general use (HO)
+)
+\Gread@gobject=\count87
+))
+\Gin@req@height=\dimen103
+\Gin@req@width=\dimen104
+)
+(/usr/local/texlive/2014/texmf-dist/tex/latex/mdwtools/mdwlist.sty
+Package: mdwlist 1996/05/02 1.1 Various list-related things
+)
+(/usr/local/texlive/2014/texmf-dist/tex/latex/float/float.sty
+Package: float 2001/11/08 v1.3d Float enhancements (AL)
+\c@float@type=\count88
+\float@exts=\toks15
+\float@box=\box26
+\@float@everytoks=\toks16
+\@floatcapt=\box27
+) (./paper.aux)
+\openout1 = `paper.aux'.
+
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 24.
+LaTeX Font Info:    ... okay on input line 24.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 24.
+LaTeX Font Info:    ... okay on input line 24.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 24.
+LaTeX Font Info:    ... okay on input line 24.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 24.
+LaTeX Font Info:    ... okay on input line 24.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 24.
+LaTeX Font Info:    ... okay on input line 24.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 24.
+LaTeX Font Info:    ... okay on input line 24.
+
+(/usr/local/texlive/2014/texmf-dist/tex/context/base/supp-pdf.mkii
+[Loading MPS to PDF converter (version 2006.09.02).]
+\scratchcounter=\count89
+\scratchdimen=\dimen105
+\scratchbox=\box28
+\nofMPsegments=\count90
+\nofMParguments=\count91
+\everyMPshowfont=\toks17
+\MPscratchCnt=\count92
+\MPscratchDim=\dimen106
+\MPnumerator=\count93
+\makeMPintoPDFobject=\count94
+\everyMPtoPDFconversion=\toks18
+) (/usr/local/texlive/2014/texmf-dist/tex/generic/oberdiek/pdftexcmds.sty
+Package: pdftexcmds 2011/11/29 v0.20 Utility functions of pdfTeX for LuaTeX (HO
+)
+
+(/usr/local/texlive/2014/texmf-dist/tex/generic/oberdiek/ifluatex.sty
+Package: ifluatex 2010/03/01 v1.3 Provides the ifluatex switch (HO)
+Package ifluatex Info: LuaTeX not detected.
+)
+(/usr/local/texlive/2014/texmf-dist/tex/generic/oberdiek/ifpdf.sty
+Package: ifpdf 2011/01/30 v2.3 Provides the ifpdf switch (HO)
+Package ifpdf Info: pdfTeX in PDF mode is detected.
+)
+Package pdftexcmds Info: LuaTeX not detected.
+Package pdftexcmds Info: \pdf@primitive is available.
+Package pdftexcmds Info: \pdf@ifprimitive is available.
+Package pdftexcmds Info: \pdfdraftmode found.
+)
+(/usr/local/texlive/2014/texmf-dist/tex/latex/oberdiek/epstopdf-base.sty
+Package: epstopdf-base 2010/02/09 v2.5 Base part for package epstopdf
+
+(/usr/local/texlive/2014/texmf-dist/tex/latex/oberdiek/grfext.sty
+Package: grfext 2010/08/19 v1.1 Manage graphics extensions (HO)
+
+(/usr/local/texlive/2014/texmf-dist/tex/generic/oberdiek/kvdefinekeys.sty
+Package: kvdefinekeys 2011/04/07 v1.3 Define keys (HO)
+))
+(/usr/local/texlive/2014/texmf-dist/tex/latex/oberdiek/kvoptions.sty
+Package: kvoptions 2011/06/30 v3.11 Key value format for package options (HO)
+
+(/usr/local/texlive/2014/texmf-dist/tex/generic/oberdiek/kvsetkeys.sty
+Package: kvsetkeys 2012/04/25 v1.16 Key value parser (HO)
+
+(/usr/local/texlive/2014/texmf-dist/tex/generic/oberdiek/etexcmds.sty
+Package: etexcmds 2011/02/16 v1.5 Avoid name clashes with e-TeX commands (HO)
+Package etexcmds Info: Could not find \expanded.
+(etexcmds)             That can mean that you are not using pdfTeX 1.50 or
+(etexcmds)             that some package has redefined \expanded.
+(etexcmds)             In the latter case, load this package earlier.
+)))
+Package grfext Info: Graphics extension search list:
+(grfext)             [.png,.pdf,.jpg,.mps,.jpeg,.jbig2,.jb2,.PNG,.PDF,.JPG,.JPE
+G,.JBIG2,.JB2,.eps]
+(grfext)             \AppendGraphicsExtensions on input line 452.
+
+(/usr/local/texlive/2014/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg
+File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
+e
+))
+\c@lemma=\count95
+\c@theorem=\count96
+\c@proof=\count97
+\c@defn=\count98
+\c@algo=\count99
+\c@observation=\count100
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <14.4> on input line 56.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <7> on input line 56.
+
+(./000abstract.tex) (./010intro.tex
+LaTeX Font Info:    Try loading font information for OMS+cmr on input line 20.
+
+(/usr/local/texlive/2014/texmf-dist/tex/latex/base/omscmr.fd
+File: omscmr.fd 1999/05/25 v2.5h Standard LaTeX font definitions
+)
+LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <12> not available
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 20.
+) (./020survey.tex [1
+
+{/usr/local/texlive/2014/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
+[2] [3] [4]
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <12> on input line 96.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <8> on input line 96.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <6> on input line 96.
+) (./030method.tex) (./040experiments.tex
+<FIG/soc-degreedist.png, id=24, 562.1pt x 421.575pt>
+File: FIG/soc-degreedist.png Graphic file (type png)
+
+<use FIG/soc-degreedist.png>
+Package pdftex.def Info: FIG/soc-degreedist.png used on input line 12.
+(pdftex.def)             Requested size: 140.92792pt x 105.69582pt.
+
+<FIG/soc-pagerank.png, id=25, 562.1pt x 421.575pt>
+File: FIG/soc-pagerank.png Graphic file (type png)
+ <use FIG/soc-pagerank.png>
+Package pdftex.def Info: FIG/soc-pagerank.png used on input line 13.
+(pdftex.def)             Requested size: 140.92792pt x 105.69582pt.
+
+<FIG/wiki-degreedist.png, id=26, 562.1pt x 421.575pt>
+File: FIG/wiki-degreedist.png Graphic file (type png)
+
+<use FIG/wiki-degreedist.png>
+Package pdftex.def Info: FIG/wiki-degreedist.png used on input line 18.
+(pdftex.def)             Requested size: 140.92792pt x 105.69582pt.
+
+<FIG/wiki-pagerank.png, id=27, 562.1pt x 421.575pt>
+File: FIG/wiki-pagerank.png Graphic file (type png)
+
+<use FIG/wiki-pagerank.png>
+Package pdftex.def Info: FIG/wiki-pagerank.png used on input line 19.
+(pdftex.def)             Requested size: 140.92792pt x 105.69582pt.
+ [5] <FIG/1dd.jpg, id=32, 132.495pt x 47.17625pt>
+File: FIG/1dd.jpg Graphic file (type jpg)
+
+<use FIG/1dd.jpg>
+Package pdftex.def Info: FIG/1dd.jpg used on input line 41.
+(pdftex.def)             Requested size: 140.92792pt x 50.1822pt.
+ <FIG/1cc.jpg, id=33, 149.55875pt x 181.67876pt>
+File: FIG/1cc.jpg Graphic file (type jpg)
+
+<use FIG/1cc.jpg>
+Package pdftex.def Info: FIG/1cc.jpg used on input line 42.
+(pdftex.def)             Requested size: 140.92792pt x 171.20496pt.
+ <FIG/2dd.jpg, id=34, 130.4875pt x 30.1125pt>
+File: FIG/2dd.jpg Graphic file (type jpg)
+
+<use FIG/2dd.jpg>
+Package pdftex.def Info: FIG/2dd.jpg used on input line 52.
+(pdftex.def)             Requested size: 140.92792pt x 32.52237pt.
+ <FIG/2cc.jpg, id=35, 148.555pt x 93.34875pt>
+File: FIG/2cc.jpg Graphic file (type jpg)
+
+<use FIG/2cc.jpg>
+Package pdftex.def Info: FIG/2cc.jpg used on input line 53.
+(pdftex.def)             Requested size: 140.92792pt x 88.55972pt.
+ [6 <./FIG/soc-degreedist.png (PNG copy)> <./FIG/soc-pagerank.png (PNG copy)> <
+./FIG/wiki-degreedist.png (PNG copy)> <./FIG/wiki-pagerank.png (PNG copy)> <./F
+IG/1dd.jpg> <./FIG/1cc.jpg>]
+<FIG/3dd.jpg, id=39, 133.49875pt x 65.24374pt>
+File: FIG/3dd.jpg Graphic file (type jpg)
+ <use FIG/3dd.jpg>
+Package pdftex.def Info: FIG/3dd.jpg used on input line 63.
+(pdftex.def)             Requested size: 140.92792pt x 68.88127pt.
+
+<FIG/3cc.jpg, id=40, 147.55125pt x 180.675pt>
+File: FIG/3cc.jpg Graphic file (type jpg)
+ <use FIG/3cc.jpg>
+Package pdftex.def Info: FIG/3cc.jpg used on input line 64.
+(pdftex.def)             Requested size: 140.92792pt x 172.56932pt.
+
+<FIG/4dd.jpg, id=41, 133.49875pt x 48.18pt>
+File: FIG/4dd.jpg Graphic file (type jpg)
+ <use FIG/4dd.jpg>
+Package pdftex.def Info: FIG/4dd.jpg used on input line 74.
+(pdftex.def)             Requested size: 140.92792pt x 50.86615pt.
+
+<FIG/4cc.jpg, id=42, 147.55125pt x 93.34875pt>
+File: FIG/4cc.jpg Graphic file (type jpg)
+ <use FIG/4cc.jpg>
+Package pdftex.def Info: FIG/4cc.jpg used on input line 75.
+(pdftex.def)             Requested size: 140.92792pt x 89.16081pt.
+
+<FIG/5dd.jpg, id=43, 134.5025pt x 47.17625pt>
+File: FIG/5dd.jpg Graphic file (type jpg)
+ <use FIG/5dd.jpg>
+Package pdftex.def Info: FIG/5dd.jpg used on input line 85.
+(pdftex.def)             Requested size: 140.92792pt x 49.43068pt.
+
+<FIG/5cc.jpg, id=44, 148.555pt x 333.245pt>
+File: FIG/5cc.jpg Graphic file (type jpg)
+ <use FIG/5cc.jpg>
+Package pdftex.def Info: FIG/5cc.jpg used on input line 86.
+(pdftex.def)             Requested size: 140.92792pt x 316.14873pt.
+) [7 <./FIG/2dd.jpg> <./FIG/2cc.jpg> <./FIG/3dd.jpg> <./FIG/3cc.jpg> <./FIG/4dd
+.jpg> <./FIG/4cc.jpg>] (./050conclusions.tex)
+No file paper.bbl.
+[8 <./FIG/5dd.jpg> <./FIG/5cc.jpg>] (./099appendix.tex) [9] (./paper.toc)
+\tf@toc=\write3
+\openout3 = `paper.toc'.
+
+
+[1] (./paper.aux) ) 
+Here is how much of TeX's memory you used:
+ 1779 strings out of 493117
+ 25515 string characters out of 6135433
+ 83929 words of memory out of 5000000
+ 5193 multiletter control sequences out of 15000+600000
+ 10625 words of font info for 37 fonts, out of 8000000 for 9000
+ 1141 hyphenation exceptions out of 8191
+ 37i,11n,23p,935b,345s stack positions out of 5000i,500n,10000p,200000b,80000s
+</usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfo
+nts/cm/cmbx10.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfon
+ts/cm/cmbx12.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfont
+s/cm/cmmi12.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts
+/cm/cmr10.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/c
+m/cmr12.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/
+cmr17.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cm
+sy10.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmt
+i10.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmti
+12.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt1
+2.pfb>
+Output written on paper.pdf (10 pages, 241957 bytes).
+PDF statistics:
+ 91 PDF objects out of 1000 (max. 8388607)
+ 54 compressed objects within 1 object stream
+ 0 named destinations out of 1000 (max. 500000)
+ 71 words of extra memory for PDF output out of 10000 (max. 10000000)
+

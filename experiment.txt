@@ -1,0 +1,24 @@
+Degree Distribution:(no index on node degree)
+147.476911545
+Degree Distribution:(index on node degree (in degree, out degree))
+346.571922302
+
+From the experiment, create index does consume system resources and it will make performance worse in general if we
+created index and used it only once.
+
+
+Degree Distribution:(no index on node degree)(run 10 times)
+2091.14193916
+Degree Distribution:(index on node degree (in degree, out degree))(run 10 times, 1 time create index)
+1351.35889053
+
+
+From the experiment, creatint index will improve performance in general if we created index and used it later a lot.
+
+Also, for a certain algorithm, create index for some tables like GM_NODES are expensive, but if re run all the algorithms,
+or use the algorithm multiple times, then the cost of creating index on tables like GM_NODES will be worth the effort.
+
+
+python gm_main.py --file samplegraph.txt --dest_dir   --unweighted --undirected
+
+python gm_main.py --file /afs/andrew.cmu.edu/usr14/jinh/phase2/phase2/graphminer/samplegraph.csv --dest_dir /afs/andrew.cmu.edu/usr14/jinh/phase2/phase2/graphminer/output/  --unweighted --undirected
