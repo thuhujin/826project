@@ -230,9 +230,13 @@ def gm_degree_distribution (undirected):
     gm_sql_table_drop_create(db_conn, GM_INDEGREE_DISTRIBUTION, "degree integer, count integer")
     gm_sql_table_drop_create(db_conn, GM_OUTDEGREE_DISTRIBUTION, "degree integer, count integer")
 
+    #cur.execute ("CREATE INDEX in_degree_index ON GM_NODE_DEGREES (in_degree)");
+
     cur.execute ("INSERT INTO %s" % GM_INDEGREE_DISTRIBUTION +
                             " SELECT in_degree \"degree\", count(*) FROM %s" % (GM_NODE_DEGREES) +
                             " GROUP BY in_degree");
+
+    #cur.execute ("CREATE INDEX out_degree_index ON GM_NODE_DEGREES (out_degree)");
 
     cur.execute ("INSERT INTO %s" % GM_OUTDEGREE_DISTRIBUTION +
                             " SELECT out_degree \"degree\", count(*) FROM %s" % (GM_NODE_DEGREES) +
@@ -246,6 +250,9 @@ def gm_degree_distribution (undirected):
         cur.execute ("INSERT INTO %s" % GM_DEGREE_DISTRIBUTION +
                             " SELECT in_degree+out_degree \"degree\", count(*) FROM %s" % (GM_NODE_DEGREES) +
                             " GROUP BY in_degree+out_degree");
+
+     #cur.execute ("DROP INDEX in_degree_index");
+     #cur.execute ("DROP INDEX out_degree_index");
 
     db_conn.commit()
     cur.close()
@@ -264,6 +271,9 @@ def gm_pagerank (num_nodes, max_iterations = gm_param_pr_max_iter, \
 
     gm_sql_table_drop_create(db_conn, norm_table,"src_id integer, dst_id integer, weight double precision")
 
+    #cur.execute ("CREATE INDEX src_id_index ON GM_TABLE (src_id)");
+    #cur.execute ("CREATE INDEX src_id_index ON GM_TABLE USING hash(src_id)");
+
     # Create normalized weighted table
     cur.execute("INSERT INTO %s " % norm_table +
             " SELECT src_id, dst_id, weight/weight_sm \"weight\" FROM %s \"TAB1\", " % (GM_TABLE) +
@@ -280,10 +290,20 @@ def gm_pagerank (num_nodes, max_iterations = gm_param_pr_max_iter, \
     gm_sql_create_and_insert(db_conn, offset_table, GM_NODES, \
                              "node_id integer, page_rank double precision default %s" % ((1.0-damping_factor)/num_nodes), \
                              "node_id", "node_id")
+
+    #cur.execute ("CREATE INDEX src_id_index_norm ON norm_table (src_id)")
+    #cur.execute ("CREATE INDEX src_id_index_norm ON norm_table USING hash(src_id)")
+    #cur.execute ("CREATE INDEX node_id_index_offset ON offset_table (node_id)")
+    #cur.execute ("CREATE INDEX node_id_index_offset ON offset_table USING hash (node_id)")
+
+
     num_iterations = 0
     while True:
         # Create Table to store the next pageRank
         gm_sql_table_drop_create(db_conn, next_table,"node_id integer, page_rank double precision")
+
+        #cur.execute ("CREATE INDEX CONCURRENTLY node_id_index_pagerank ON GM_PAGERANK (node_id)");
+        #cur.execute ("CREATE INDEX CONCURRENTLY node_id_index_pagerank ON GM_PAGERANK USING hash (node_id)");
 
         # Compute Next PageRank
         cur.execute ("INSERT INTO %s " % next_table +
@@ -311,6 +331,9 @@ def gm_pagerank (num_nodes, max_iterations = gm_param_pr_max_iter, \
 
         if (diff<=stop_threshold or num_iterations>=max_iterations):
             break
+
+    #cur.execute ("DROP INDEX src_id_index_norm");
+    #cur.execute ("DROP INDEX node_id_index_offset");
 
     # Drop temp tables
     gm_sql_table_drop(db_conn, offset_table)
@@ -381,12 +404,19 @@ def gm_all_radius (num_nodes, max_iter = gm_param_radius_max_iter):
                              "node_id integer, hash integer", \
                              "node_id, hash", "node_id, (((node_id%%%s+1)#(node_id%%%s))+1)/2" % (num_nodes, num_nodes))
 
+    #cur.execute ("CREATE INDEX src_id_index_undirect ON GM_TABLE_UNDIRECT (src_id)")
+    #cur.execute ("CREATE INDEX src_id_index_undirect ON GM_TABLE_UNDIRECT USING hash (src_id)")
+
     for cur_hop in range(1,max_iter+1):
         print "Hop number : " + str(cur_hop)
 
         # create ith hop table
         cur_hop_table = hop_table+str(cur_hop)
         prev_hop_table = hop_table+str(cur_hop-1)
+
+        #cur.execute ("CREATE INDEX node_id_index_%s " % prev_hop_table + " ON prev_hop_table (node_id)" )
+        #cur.execute ("CREATE INDEX node_id_index_%s " % prev_hop_table + " ON prev_hop_table USING hash (node_id)" )
+
         gm_sql_table_drop_create(db_conn, cur_hop_table,"node_id integer, hash integer")
         cur.execute("INSERT INTO %s " % cur_hop_table +
                             " SELECT node_id, bit_or(hash) FROM ( " +
@@ -399,7 +429,7 @@ def gm_all_radius (num_nodes, max_iter = gm_param_radius_max_iter):
 
         # Check convergence
         diff = gm_sql_vect_diff(db_conn, cur_hop_table, prev_hop_table, "node_id", "node_id", "hash", "hash")
-
+        
         print "Current Error = " + str(diff)
         if (diff==0):
             print "Convergence acheived"
@@ -410,6 +440,7 @@ def gm_all_radius (num_nodes, max_iter = gm_param_radius_max_iter):
                              "id integer, value double precision", \
                              "id, value", "node_id, %s" % (nghbourhd_func))
 
+    #cur.execute ("CREATE INDEX id_index_max_hop_ngh ON max_hop_ngh (id)")
 
 
     gm_sql_table_drop_create(db_conn, GM_RADIUS,"node_id integer, radius integer")
@@ -552,6 +583,9 @@ def gm_eigen_QR_iterate(T, n, EVal, EVec, steps, err):
             gm_sql_table_drop_create(db_conn, EVec,"row_id integer, col_id integer, value double precision")
             cur.execute("INSERT INTO %s" % (EVec) + " SELECT * FROM %s" % (temp_table))
             db_conn.commit()
+
+            #cur.execute("CREATE INDEX row_id_index_%s" % (EVal) + " ON %s" % (EVal) + " (row_id)")
+            #cur.execute("CREATE INDEX col_id_index_%s" % (EVal) + " ON %s" % (EVal) + " (col_id)")
 
             cur.execute("SELECT max(abs(value)) FROM %s" % (EVal) + " WHERE row_id <> col_id" )
             cur_err = cur.fetchone()[0]
@@ -787,6 +821,16 @@ def gm_belief_propagation(belief_file, delim, undirected, \
     gm_sql_create_and_insert(db_conn, GM_BELIEF, GM_BELIEF_PRIOR, \
                              "node_id integer, belief double precision", \
                              "node_id, belief", "node_id, belief")
+
+    #cur.execute("CREATE INDEX node_id_index_belief_prior ON GM_BELIEF_PRIOR (node_id)");
+    #cur.execute("CREATE INDEX src_id_index_undirect ON GM_TABLE_UNDIRECT (src_id)"); 
+    #cur.execute("CREATE INDEX node_id_index_node_degree ON GM_NODE_DEGREES (node_id)"); 
+    #cur.execute("CREATE INDEX node_id_index_belief ON GM_BELIEF (node_id)");
+
+    #cur.execute("CREATE INDEX node_id_index_belief_prior ON GM_BELIEF_PRIOR USING hash (node_id)");
+    #cur.execute("CREATE INDEX src_id_index_undirect ON GM_TABLE_UNDIRECT USING hash (src_id)"); 
+    #cur.execute("CREATE INDEX node_id_index_node_degree ON GM_NODE_DEGREES USING hash (node_id)"); 
+    #cur.execute("CREATE INDEX node_id_index_belief ON GM_BELIEF USING hash (node_id)");     
 
     num_iterations = 0
     while True:
