@@ -1,0 +1,67 @@
+Connected To Database
+Loaded data from /afs/andrew.cmu.edu/usr14/jinh/phase2/data/p2p-Gnutella31.txt
+Computing Node degrees...
+Computing radius of every node...
+index: 0.00286102294922
+index: 0.0
+Hop number : 1
+index: 97.1159934998
+index: 0.00190734863281
+Current Error = 73242.7228945
+Hop number : 2
+index: 99.3270874023
+index: 0.00214576721191
+Current Error = 257523.08067
+Hop number : 3
+index: 104.969024658
+index: 0.00214576721191
+Current Error = 833883.780309
+Hop number : 4
+index: 93.2559967041
+index: 0.00190734863281
+Current Error = 2679037.15749
+Hop number : 5
+index: 90.9388065338
+index: 0.000953674316406
+Current Error = 6399771.3847
+Hop number : 6
+index: 65.9911632538
+index: 0.00190734863281
+Current Error = 8388156.06786
+Hop number : 7
+index: 93.309879303
+index: 0.00214576721191
+Current Error = 4976617.69213
+Hop number : 8
+index: 93.0089950562
+index: 0.00596046447754
+Current Error = 827972.232191
+Hop number : 9
+index: 94.8328971863
+index: 0.00190734863281
+Current Error = 80264.8798915
+Hop number : 10
+index: 96.8480110168
+index: 0.00190734863281
+Current Error = 32768.0
+Hop number : 11
+index: 93.4789180756
+index: 0.00190734863281
+Current Error = 0.0
+Convergence acheived
+index: 0.00190734863281
+Getting nodes with eff. radius 0
+Getting nodes with eff. radius 1
+Getting nodes with eff. radius 2
+Getting nodes with eff. radius 3
+Getting nodes with eff. radius 4
+Getting nodes with eff. radius 5
+Getting nodes with eff. radius 6
+Getting nodes with eff. radius 7
+Getting nodes with eff. radius 8
+Getting nodes with eff. radius 9
+Getting nodes with eff. radius 10
+Getting nodes with eff. radius 11
+Maximum effective radius = 10
+whole: 48675.0481129
+Disconnected From Database

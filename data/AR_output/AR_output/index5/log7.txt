@@ -1,0 +1,62 @@
+Connected To Database
+Loaded data from /afs/andrew.cmu.edu/usr14/jinh/phase2/data/email-Enron.ungraph.txt
+Computing Node degrees...
+Computing radius of every node...
+index: 0.00309944152832
+index: 0.0
+Hop number : 1
+index: 0.00119209289551
+index: 0.0
+Current Error = 66092.3565929
+Hop number : 2
+index: 0.00214576721191
+index: 0.000953674316406
+Current Error = 882530.115053
+Hop number : 3
+index: 0.00214576721191
+index: 0.0
+Current Error = 3949652.21212
+Hop number : 4
+index: 0.000953674316406
+index: 0.00119209289551
+Current Error = 6813305.1414
+Hop number : 5
+index: 0.00190734863281
+index: 0.0
+Current Error = 3803201.12744
+Hop number : 6
+index: 0.00119209289551
+index: 0.000953674316406
+Current Error = 1734544.22338
+Hop number : 7
+index: 0.000953674316406
+index: 0.0
+Current Error = 476473.669266
+Hop number : 8
+index: 0.00119209289551
+index: 0.0
+Current Error = 147173.061883
+Hop number : 9
+index: 0.00119209289551
+index: 0.000953674316406
+Current Error = 95534.3158451
+Hop number : 10
+index: 0.000953674316406
+index: 0.000953674316406
+Current Error = 0.0
+Convergence acheived
+index: 106.667995453
+Getting nodes with eff. radius 0
+Getting nodes with eff. radius 1
+Getting nodes with eff. radius 2
+Getting nodes with eff. radius 3
+Getting nodes with eff. radius 4
+Getting nodes with eff. radius 5
+Getting nodes with eff. radius 6
+Getting nodes with eff. radius 7
+Getting nodes with eff. radius 8
+Getting nodes with eff. radius 9
+Getting nodes with eff. radius 10
+Maximum effective radius = 9
+whole: 29462.3091221
+Disconnected From Database

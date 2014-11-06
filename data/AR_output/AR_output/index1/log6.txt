@@ -1,0 +1,127 @@
+Connected To Database
+Loaded data from /afs/andrew.cmu.edu/usr14/jinh/phase2/data/com-dblp.ungraph-75000.txt
+Computing Node degrees...
+Computing radius of every node...
+index: 0.00286102294922
+index: 0.00119209289551
+Hop number : 1
+index: 116.690158844
+index: 0.00190734863281
+Current Error = 152297.83052
+Hop number : 2
+index: 110.228061676
+index: 0.00214576721191
+Current Error = 414002.878576
+Hop number : 3
+index: 79.6680450439
+index: 0.00190734863281
+Current Error = 590005.317353
+Hop number : 4
+index: 114.22586441
+index: 0.00190734863281
+Current Error = 966958.334745
+Hop number : 5
+index: 111.381053925
+index: 0.00286102294922
+Current Error = 1610955.04697
+Hop number : 6
+index: 111.679792404
+index: 0.00214576721191
+Current Error = 3500561.04747
+Hop number : 7
+index: 115.139961243
+index: 0.00214576721191
+Current Error = 5821775.72083
+Hop number : 8
+index: 112.596988678
+index: 0.00214576721191
+Current Error = 8467557.87759
+Hop number : 9
+index: 112.632989883
+index: 0.00190734863281
+Current Error = 9570763.02454
+Hop number : 10
+index: 112.973928452
+index: 0.00190734863281
+Current Error = 8715724.01911
+Hop number : 11
+index: 112.904071808
+index: 0.00214576721191
+Current Error = 6788495.54429
+Hop number : 12
+index: 88.6061191559
+index: 0.00190734863281
+Current Error = 4818132.10412
+Hop number : 13
+index: 113.054990768
+index: 0.00190734863281
+Current Error = 3178963.34809
+Hop number : 14
+index: 110.977888107
+index: 0.00190734863281
+Current Error = 2236328.97227
+Hop number : 15
+index: 114.35008049
+index: 0.00214576721191
+Current Error = 1461021.49331
+Hop number : 16
+index: 117.372989655
+index: 0.00214576721191
+Current Error = 974664.117111
+Hop number : 17
+index: 111.750125885
+index: 0.00214576721191
+Current Error = 600326.277153
+Hop number : 18
+index: 113.069057465
+index: 0.00309944152832
+Current Error = 406558.950963
+Hop number : 19
+index: 111.572027206
+index: 0.00190734863281
+Current Error = 338564.815089
+Hop number : 20
+index: 116.899967194
+index: 0.00190734863281
+Current Error = 313872.28669
+Hop number : 21
+index: 76.7760276794
+index: 0.00286102294922
+Current Error = 238554.640852
+Hop number : 22
+index: 111.928939819
+index: 0.00190734863281
+Current Error = 131072.0
+Hop number : 23
+index: 110.069990158
+index: 0.00190734863281
+Current Error = 0.0
+Convergence acheived
+index: 0.00381469726562
+Getting nodes with eff. radius 0
+Getting nodes with eff. radius 1
+Getting nodes with eff. radius 2
+Getting nodes with eff. radius 3
+Getting nodes with eff. radius 4
+Getting nodes with eff. radius 5
+Getting nodes with eff. radius 6
+Getting nodes with eff. radius 7
+Getting nodes with eff. radius 8
+Getting nodes with eff. radius 9
+Getting nodes with eff. radius 10
+Getting nodes with eff. radius 11
+Getting nodes with eff. radius 12
+Getting nodes with eff. radius 13
+Getting nodes with eff. radius 14
+Getting nodes with eff. radius 15
+Getting nodes with eff. radius 16
+Getting nodes with eff. radius 17
+Getting nodes with eff. radius 18
+Getting nodes with eff. radius 19
+Getting nodes with eff. radius 20
+Getting nodes with eff. radius 21
+Getting nodes with eff. radius 22
+Getting nodes with eff. radius 23
+Maximum effective radius = 22
+whole: 87245.2669144
+Disconnected From Database

@@ -1,0 +1,57 @@
+Connected To Database
+Loaded data from /afs/andrew.cmu.edu/usr14/jinh/phase2/data/soc-Slashdot0811-75000.txt
+Computing Node degrees...
+Computing radius of every node...
+index: 0.00286102294922
+index: 0.00119209289551
+Hop number : 1
+index: 0.000953674316406
+index: 0.0
+Current Error = 164582.213574
+Hop number : 2
+index: 0.000953674316406
+index: 0.0
+Current Error = 1701922.44029
+Hop number : 3
+index: 0.000953674316406
+index: 0.0
+Current Error = 12100079.6809
+Hop number : 4
+index: 0.00119209289551
+index: 0.0
+Current Error = 22829388.3673
+Hop number : 5
+index: 0.00190734863281
+index: 0.0
+Current Error = 11977425.593
+Hop number : 6
+index: 0.000953674316406
+index: 0.0
+Current Error = 3566436.51831
+Hop number : 7
+index: 0.00190734863281
+index: 0.0
+Current Error = 930726.15628
+Hop number : 8
+index: 0.000953674316406
+index: 0.000953674316406
+Current Error = 299876.437487
+Hop number : 9
+index: 0.00214576721191
+index: 0.0
+Current Error = 0.0
+Convergence acheived
+index: 0.00405311584473
+Getting nodes with eff. radius 0
+Getting nodes with eff. radius 1
+Getting nodes with eff. radius 2
+Getting nodes with eff. radius 3
+Getting nodes with eff. radius 4
+Getting nodes with eff. radius 5
+Getting nodes with eff. radius 6
+Getting nodes with eff. radius 7
+Getting nodes with eff. radius 8
+Getting nodes with eff. radius 9
+Maximum effective radius = 8
+whole: 53396.6639042
+Disconnected From Database

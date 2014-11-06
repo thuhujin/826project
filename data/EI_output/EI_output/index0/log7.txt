@@ -1,0 +1,77 @@
+Connected To Database
+Loaded data from /afs/andrew.cmu.edu/usr14/jinh/phase2/data/email-Enron.ungraph.txt
+Computing Node degrees...
+Computing Eigenvalues...
+index: 0.00309944152832
+index: 0.0
+Iteration No: 1
+Iteration No: 2
+Performing QR Algorithm. Max Iters=500, Stop threshold=0.01
+index: 0.00190734863281
+index: 0.0
+QR Algorithm Error = 1.0527186983
+index: 0.000953674316406
+index: 0.0
+QR Algorithm Error = 0.047081573728
+index: 0.00309944152832
+index: 0.0
+QR Algorithm Error = 0.0021056049469
+index: 1853.52492332
+Iteration No: 3
+Performing QR Algorithm. Max Iters=500, Stop threshold=0.01
+index: 0.00190734863281
+index: 0.0
+QR Algorithm Error = 27.0195164953
+index: 0.00190734863281
+index: 0.0
+QR Algorithm Error = 6.1975685114
+index: 0.00190734863281
+index: 0.0
+QR Algorithm Error = 1.41837155883
+index: 0.00190734863281
+index: 0.0
+QR Algorithm Error = 0.324637097932
+index: 0.000953674316406
+index: 0.0
+QR Algorithm Error = 0.074304595521
+index: 0.000953674316406
+index: 0.0
+QR Algorithm Error = 0.0174014715662
+index: 0.000953674316406
+index: 0.0
+QR Algorithm Error = 0.0050731766923
+index: 4538.89513016
+Performing QR Algorithm. Max Iters=500, Stop threshold=0.01
+index: 0.00286102294922
+index: 0.00119209289551
+QR Algorithm Error = 27.0195164953
+index: 0.00309944152832
+index: 0.00119209289551
+QR Algorithm Error = 6.1975685114
+index: 0.000953674316406
+index: 0.0
+QR Algorithm Error = 1.41837155883
+index: 0.00214576721191
+index: 0.000953674316406
+QR Algorithm Error = 0.324637097932
+index: 0.00190734863281
+index: 0.0
+QR Algorithm Error = 0.074304595521
+index: 0.000953674316406
+index: 0.0
+QR Algorithm Error = 0.0174014715662
+index: 0.00190734863281
+index: 0.0
+QR Algorithm Error = 0.0050731766923
+index: 4468.40381622
+Getting EigenValues...
+Getting top 3 EigenVectors...
+Getting eigenvector 1
+Getting eigenvector 2
+Getting eigenvector 3
+EigenValues computed: 
+(1, 232.174569654545)
+(2, -53.1414509664829)
+(3, 15.4927098927683)
+whole: 18466.7160511
+Disconnected From Database

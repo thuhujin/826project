@@ -1,0 +1,77 @@
+Connected To Database
+Loaded data from /afs/andrew.cmu.edu/usr14/jinh/phase2/data/email-Enron.ungraph.txt
+Computing Node degrees...
+Computing Eigenvalues...
+index: 0.00596046447754
+index: 0.00190734863281
+Iteration No: 1
+Iteration No: 2
+Performing QR Algorithm. Max Iters=500, Stop threshold=0.01
+index: 0.00190734863281
+index: 5.01704216003
+QR Algorithm Error = 0.989933319963
+index: 0.000953674316406
+index: 4.99892234802
+QR Algorithm Error = 0.0427260686633
+index: 0.00309944152832
+index: 5.27000427246
+QR Algorithm Error = 0.00184403327842
+index: 1545.22109032
+Iteration No: 3
+Performing QR Algorithm. Max Iters=500, Stop threshold=0.01
+index: 0.00286102294922
+index: 5.28979301453
+QR Algorithm Error = 26.5738468878
+index: 0.00190734863281
+index: 5.10406494141
+QR Algorithm Error = 6.06000199087
+index: 0.00119209289551
+index: 5.23900985718
+QR Algorithm Error = 1.37910858625
+index: 0.00214576721191
+index: 5.01489639282
+QR Algorithm Error = 0.313881139792
+index: 0.00309944152832
+index: 5.32698631287
+QR Algorithm Error = 0.0714399373772
+index: 0.000953674316406
+index: 5.01608848572
+QR Algorithm Error = 0.0164843800135
+index: 0.00119209289551
+index: 5.07688522339
+QR Algorithm Error = 0.00476754500257
+index: 4842.54193306
+Performing QR Algorithm. Max Iters=500, Stop threshold=0.01
+index: 0.00190734863281
+index: 5.17296791077
+QR Algorithm Error = 26.5738468878
+index: 0.00309944152832
+index: 5.27215003967
+QR Algorithm Error = 6.06000199087
+index: 0.00309944152832
+index: 5.11693954468
+QR Algorithm Error = 1.37910858625
+index: 0.00214576721191
+index: 5.24020195007
+QR Algorithm Error = 0.313881139792
+index: 0.00214576721191
+index: 5.09905815125
+QR Algorithm Error = 0.0714399373772
+index: 0.000953674316406
+index: 5.03611564636
+QR Algorithm Error = 0.0164843800135
+index: 0.000953674316406
+index: 5.10001182556
+QR Algorithm Error = 0.00476754500257
+index: 4647.27306366
+Getting EigenValues...
+Getting top 3 EigenVectors...
+Getting eigenvector 1
+Getting eigenvector 2
+Getting eigenvector 3
+EigenValues computed: 
+(1, 232.325839959467)
+(2, -52.8779392181078)
+(3, 15.2931404070398)
+whole: 19505.0430298
+Disconnected From Database

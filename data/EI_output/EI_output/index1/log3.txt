@@ -1,0 +1,185 @@
+Connected To Database
+Loaded data from /afs/andrew.cmu.edu/usr14/jinh/phase2/data/cit-HepPh.txt
+Computing Node degrees...
+Computing Eigenvalues...
+index: 0.00286102294922
+index: 0.0
+Iteration No: 1
+Iteration No: 2
+Performing QR Algorithm. Max Iters=500, Stop threshold=0.01
+index: 5.61285018921
+index: 0.00119209289551
+QR Algorithm Error = 0.00756906867283
+index: 818.77207756
+Iteration No: 3
+Performing QR Algorithm. Max Iters=500, Stop threshold=0.01
+index: 5.36894798279
+index: 0.00119209289551
+QR Algorithm Error = 12.4612852548
+index: 5.5890083313
+index: 0.000953674316406
+QR Algorithm Error = 10.615943892
+index: 5.43808937073
+index: 0.000953674316406
+QR Algorithm Error = 8.58714277124
+index: 5.39803504944
+index: 0.000953674316406
+QR Algorithm Error = 6.7004154878
+index: 5.62596321106
+index: 0.000953674316406
+QR Algorithm Error = 5.11369436942
+index: 5.28693199158
+index: 0.000953674316406
+QR Algorithm Error = 3.85245172462
+index: 5.41996955872
+index: 0.00119209289551
+QR Algorithm Error = 2.88094503452
+index: 5.18894195557
+index: 0.000953674316406
+QR Algorithm Error = 2.145545132
+index: 5.35607337952
+index: 0.000953674316406
+QR Algorithm Error = 1.59420367994
+index: 5.04803657532
+index: 0.00119209289551
+QR Algorithm Error = 1.18304019529
+index: 5.13100624084
+index: 0.0
+QR Algorithm Error = 0.87730776253
+index: 5.38778305054
+index: 0.000953674316406
+QR Algorithm Error = 0.650335808402
+index: 5.21898269653
+index: 0.000953674316406
+QR Algorithm Error = 0.48198298927
+index: 5.3391456604
+index: 0.00119209289551
+QR Algorithm Error = 0.357170358566
+index: 5.53202629089
+index: 0.000953674316406
+QR Algorithm Error = 0.264661921697
+index: 5.03396987915
+index: 0.000953674316406
+QR Algorithm Error = 0.196106655361
+index: 5.01203536987
+index: 0.0
+QR Algorithm Error = 0.145306442173
+index: 5.14984130859
+index: 0.0
+QR Algorithm Error = 0.10766457483
+index: 5.10096549988
+index: 0.0
+QR Algorithm Error = 0.0797734322522
+index: 5.24711608887
+index: 0.0
+QR Algorithm Error = 0.0591074668118
+index: 5.28001785278
+index: 0.00119209289551
+QR Algorithm Error = 0.0437951137758
+index: 5.33103942871
+index: 0.000953674316406
+QR Algorithm Error = 0.0324495407818
+index: 5.32507896423
+index: 0.000953674316406
+QR Algorithm Error = 0.0240431420966
+index: 5.37800788879
+index: 0.000953674316406
+QR Algorithm Error = 0.0178145052653
+index: 5.27906417847
+index: 0.0
+QR Algorithm Error = 0.0131994622963
+index: 5.2638053894
+index: 0.00119209289551
+QR Algorithm Error = 0.00977999597338
+index: 15402.6498795
+Performing QR Algorithm. Max Iters=500, Stop threshold=0.01
+index: 5.4190158844
+index: 0.000953674316406
+QR Algorithm Error = 12.4612852548
+index: 5.13505935669
+index: 0.000953674316406
+QR Algorithm Error = 10.615943892
+index: 5.10907173157
+index: 0.0
+QR Algorithm Error = 8.58714277124
+index: 5.35702705383
+index: 0.000953674316406
+QR Algorithm Error = 6.7004154878
+index: 5.23209571838
+index: 0.000953674316406
+QR Algorithm Error = 5.11369436942
+index: 5.16986846924
+index: 0.00119209289551
+QR Algorithm Error = 3.85245172462
+index: 5.29408454895
+index: 0.000953674316406
+QR Algorithm Error = 2.88094503452
+index: 5.3551197052
+index: 0.000953674316406
+QR Algorithm Error = 2.145545132
+index: 5.27596473694
+index: 0.000953674316406
+QR Algorithm Error = 1.59420367994
+index: 5.63097000122
+index: 0.000953674316406
+QR Algorithm Error = 1.18304019529
+index: 5.87391853333
+index: 0.00119209289551
+QR Algorithm Error = 0.87730776253
+index: 5.38086891174
+index: 0.0
+QR Algorithm Error = 0.650335808402
+index: 5.50198554993
+index: 0.000953674316406
+QR Algorithm Error = 0.48198298927
+index: 5.12099266052
+index: 0.00119209289551
+QR Algorithm Error = 0.357170358566
+index: 5.56015968323
+index: 0.0
+QR Algorithm Error = 0.264661921697
+index: 6.16383552551
+index: 0.000953674316406
+QR Algorithm Error = 0.196106655361
+index: 5.04612922668
+index: 0.000953674316406
+QR Algorithm Error = 0.145306442173
+index: 5.14316558838
+index: 0.000953674316406
+QR Algorithm Error = 0.10766457483
+index: 5.11312484741
+index: 0.0
+QR Algorithm Error = 0.0797734322522
+index: 5.04589080811
+index: 0.000953674316406
+QR Algorithm Error = 0.0591074668118
+index: 5.03611564636
+index: 0.0
+QR Algorithm Error = 0.0437951137758
+index: 5.17106056213
+index: 0.000953674316406
+QR Algorithm Error = 0.0324495407818
+index: 5.17177581787
+index: 0.00119209289551
+QR Algorithm Error = 0.0240431420966
+index: 5.06114959717
+index: 0.0
+QR Algorithm Error = 0.0178145052653
+index: 5.17201423645
+index: 0.000953674316406
+QR Algorithm Error = 0.0131994622963
+index: 4.89377975464
+index: 0.0
+QR Algorithm Error = 0.00977999597338
+index: 16062.1638298
+Getting EigenValues...
+Getting top 3 EigenVectors...
+Getting eigenvector 1
+Getting eigenvector 2
+Getting eigenvector 3
+EigenValues computed: 
+(1, 71.3102794495531)
+(2, 15.6514782805359)
+(3, -11.5967880298676)
+whole: 40535.6309414
+Disconnected From Database

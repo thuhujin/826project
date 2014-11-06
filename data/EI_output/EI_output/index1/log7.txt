@@ -1,0 +1,77 @@
+Connected To Database
+Loaded data from /afs/andrew.cmu.edu/usr14/jinh/phase2/data/email-Enron.ungraph.txt
+Computing Node degrees...
+Computing Eigenvalues...
+index: 0.00596046447754
+index: 0.0
+Iteration No: 1
+Iteration No: 2
+Performing QR Algorithm. Max Iters=500, Stop threshold=0.01
+index: 5.37705421448
+index: 0.00119209289551
+QR Algorithm Error = 1.01139181821
+index: 5.06401062012
+index: 0.0
+QR Algorithm Error = 0.0441727705737
+index: 4.83989715576
+index: 0.000953674316406
+QR Algorithm Error = 0.00192920353547
+index: 1618.47996712
+Iteration No: 3
+Performing QR Algorithm. Max Iters=500, Stop threshold=0.01
+index: 5.3870677948
+index: 0.0
+QR Algorithm Error = 26.9211475166
+index: 5.36608695984
+index: 0.00214576721191
+QR Algorithm Error = 6.1382674673
+index: 5.06210327148
+index: 0.000953674316406
+QR Algorithm Error = 1.39655012988
+index: 5.01585006714
+index: 0.0
+QR Algorithm Error = 0.317768340526
+index: 5.0311088562
+index: 0.000953674316406
+QR Algorithm Error = 0.0723060128217
+index: 5.30791282654
+index: 0.000953674316406
+QR Algorithm Error = 0.0172423757732
+index: 5.06615638733
+index: 0.0
+QR Algorithm Error = 0.00502033830542
+index: 5118.41797829
+Performing QR Algorithm. Max Iters=500, Stop threshold=0.01
+index: 5.13195991516
+index: 0.000953674316406
+QR Algorithm Error = 26.9211475166
+index: 5.06997108459
+index: 0.000953674316406
+QR Algorithm Error = 6.1382674673
+index: 5.08594512939
+index: 0.000953674316406
+QR Algorithm Error = 1.39655012988
+index: 5.038022995
+index: 0.000953674316406
+QR Algorithm Error = 0.317768340526
+index: 5.07593154907
+index: 0.000953674316406
+QR Algorithm Error = 0.0723060128217
+index: 5.03587722778
+index: 0.00119209289551
+QR Algorithm Error = 0.0172423757732
+index: 5.28001785278
+index: 0.000953674316406
+QR Algorithm Error = 0.00502033830542
+index: 4636.57307625
+Getting EigenValues...
+Getting top 3 EigenVectors...
+Getting eigenvector 1
+Getting eigenvector 2
+Getting eigenvector 3
+EigenValues computed: 
+(1, 232.239008192935)
+(2, -52.8445503518243)
+(3, 15.3863658059196)
+whole: 18978.2021046
+Disconnected From Database

@@ -394,6 +394,7 @@ def gm_pagerank (num_nodes, indexflag, max_iterations = gm_param_pr_max_iter, \
 # Task 3: Weakly Connected Components
 #-------------------------------------------------------------#
 def gm_connected_components (num_nodes, indexflag):
+    starttime = time.time()
     temp_table = "GM_CC_TEMP"
     cur = db_conn.cursor()
     print 'Computing Weakly Connected Components...'
@@ -411,14 +412,9 @@ def gm_connected_components (num_nodes, indexflag):
 
     while True:
 
-        time1 = time.time()
-        if(indexflag[1]=='1'):
-            cur.execute ("CREATE INDEX TEMP_TABLE_INDEX_CC ON GM_CC_TEMP (node_id)");
-        time2 = time.time()
-        print "index:", (time2-time1)*1000.0
-
         gm_sql_table_drop_create(db_conn, temp_table,"node_id integer, component_id integer")
         # Set component id as the min{component ids of neighbours, node's componet id}
+
         cur.execute("INSERT INTO %s " % temp_table +
                             " SELECT node_id, MIN(component_id) \"component_id\" FROM (" +
                                 " SELECT src_id \"node_id\", MIN(component_id) \"component_id\" FROM %s, %s" % (GM_TABLE_UNDIRECT,GM_CON_COMP) +
@@ -427,6 +423,12 @@ def gm_connected_components (num_nodes, indexflag):
                                 " SELECT * FROM %s" %  GM_CON_COMP +
                             " ) \"T\" GROUP BY node_id")
         db_conn.commit()
+
+        time1 = time.time()
+        if(indexflag[1]=='1'):
+            cur.execute ("CREATE INDEX TEMP_TABLE_INDEX_CC ON GM_CC_TEMP (node_id)");
+        time2 = time.time()
+        print "index:", (time2-time1)*1000.0
 
         time1 = time.time()
         if(indexflag[2]=='1'):
@@ -456,6 +458,8 @@ def gm_connected_components (num_nodes, indexflag):
 
     # Drop temp tables
     gm_sql_table_drop(db_conn, temp_table)
+    endtime = time.time()
+    print "whole:", (endtime - starttime)*1000.0
 
 # Task 4: Radius of every node
 #-------------------------------------------------------------#
@@ -1186,18 +1190,18 @@ def main():
         # CREATE INDEX GM_TABLE_UNDIRECT_INDEX_CC ON GM_TABLE_UNDIRECTED (node_id)
         # CREATE INDEX TEMP_TABLE_INDEX_CC ON GM_CC_TEMP (node_id)
         # CREATE INDEX GM_TABLE_UNDIRECT_INDEX_CC ON GM_TABLE_UNDIRECTED (node_id)
-        gm_connected_components(num_nodes, '000')                      # Connected components
+        # gm_connected_components(num_nodes, '010')                      # Connected components
 
         # CREATE INDEX row_id_index_%s" % (EVal) + " ON %s" % (EVal) + " (row_id)
         # CREATE INDEX col_id_index_%s" % (EVal) + " ON %s" % (EVal) + " (col_id)
         # CREATE INDEX col_id_index_%s" % (basis_vect_0) + " ON %s" % (basis_vect_0) + " (id)
         # CREATE INDEX col_id_index_%s" % (basis_vect_1) + " ON %s" % (basis_vect_1) + " (id)
-        # gm_eigen(gm_param_eig_max_iter, num_nodes, gm_param_eig_thres1, gm_param_eig_thres2,'0000')
+        gm_eigen(gm_param_eig_max_iter, num_nodes, gm_param_eig_thres1, gm_param_eig_thres2,'0011')
 
         # CREATE INDEX src_id_index_undirect ON GM_TABLE_UNDIRECT (src_id) ///hash
         # CREATE INDEX node_id_index_%s " % prev_hop_table + " ON prev_hop_table (node_id) ///hash
         # CREATE INDEX id_index_max_hop_ngh ON max_hop_ngh (id)
-        # gm_all_radius(num_nodes,'10101')
+        # gm_all_radius(num_nodes,'00001')
         # if (args.belief_file):
         #     gm_belief_propagation(args.belief_file, args.delimiter, args.undirected, '11111111')
 
