@@ -221,7 +221,7 @@ def gm_node_degrees ():
 
 
 # Degree distribution
-def gm_degree_distribution (undirected, indexflag):
+def gm_degree_distribution (undirected,indexflag):
     starttime = time.time()
     cur = db_conn.cursor()
     print "Computing Degree distribution of the nodes..."
@@ -235,6 +235,7 @@ def gm_degree_distribution (undirected, indexflag):
         cur.execute ("CREATE INDEX in_degree_index ON GM_NODE_DEGREES (in_degree)")
     time2 = time.time()
     print "index:", (time2-time1)*1000.0
+
 
     cur.execute ("INSERT INTO %s" % GM_INDEGREE_DISTRIBUTION +
                             " SELECT in_degree \"degree\", count(*) FROM %s" % (GM_NODE_DEGREES) +
@@ -269,8 +270,8 @@ def gm_degree_distribution (undirected, indexflag):
 
 # Task 2: PageRank
 # ------------------------------------------------------------------------- #
-def gm_pagerank (num_nodes, indexflag, max_iterations = gm_param_pr_max_iter, \
-                    stop_threshold = gm_param_pr_thres, damping_factor = gm_param_pr_damping):
+def gm_pagerank (num_nodes, max_iterations = gm_param_pr_max_iter, \
+                    stop_threshold = gm_param_pr_thres, damping_factor = gm_param_pr_damping, indexflag):
     starttime = time.time()
     offset_table = "GM_PR_OFFSET"
     next_table = "GM_PR_NEXT"
@@ -313,25 +314,25 @@ def gm_pagerank (num_nodes, indexflag, max_iterations = gm_param_pr_max_iter, \
 
     time1 = time.time()
     if(indexflag[2]=='1'):
-        cur.execute ("CREATE INDEX src_id_index_norm ON GM_PR_NORM (src_id)")
+        cur.execute ("CREATE INDEX src_id_index_norm ON norm_table (src_id)")
     time2 = time.time()
     print "index:", (time2-time1)*1000.0
 
     time1 = time.time()
     if(indexflag[3]=='1'):
-        cur.execute ("CREATE INDEX src_id_index_norm ON GM_PR_NORM USING hash(src_id)")
+        cur.execute ("CREATE INDEX src_id_index_norm ON norm_table USING hash(src_id)")
     time2 = time.time()
     print "index:", (time2-time1)*1000.0
 
     time1 = time.time()
     if(indexflag[4]=='1'):
-        cur.execute ("CREATE INDEX node_id_index_offset ON GM_PR_OFFSET (node_id)")
+        cur.execute ("CREATE INDEX node_id_index_offset ON offset_table (node_id)")
     time2 = time.time()
     print "index:", (time2-time1)*1000.0
 
     time1 = time.time()
     if(indexflag[5]=='1'):
-        cur.execute ("CREATE INDEX node_id_index_offset ON GM_PR_OFFSET USING hash (node_id)")
+        cur.execute ("CREATE INDEX node_id_index_offset ON offset_table USING hash (node_id)")
     time2 = time.time()
     print "index:", (time2-time1)*1000.0
 
@@ -342,13 +343,13 @@ def gm_pagerank (num_nodes, indexflag, max_iterations = gm_param_pr_max_iter, \
 
         time1 = time.time()
         if(indexflag[6]=='1'):
-            cur.execute ("CREATE INDEX node_id_index_pagerank ON GM_PAGERANK (node_id)");
+            cur.execute ("CREATE INDEX CONCURRENTLY node_id_index_pagerank ON GM_PAGERANK (node_id)");
         time2 = time.time()
         print "index:", (time2-time1)*1000.0
 
         time1 = time.time()
         if(indexflag[7]=='1'):
-            cur.execute ("CREATE INDEX node_id_index_pagerank ON GM_PAGERANK USING hash (node_id)");
+            cur.execute ("CREATE INDEX CONCURRENTLY node_id_index_pagerank ON GM_PAGERANK USING hash (node_id)");
         time2 = time.time()
         print "index:", (time2-time1)*1000.0
 
@@ -440,7 +441,7 @@ def gm_connected_components (num_nodes, indexflag):
 
 # Task 4: Radius of every node
 #-------------------------------------------------------------#
-def gm_all_radius (num_nodes, indexflag, max_iter = gm_param_radius_max_iter):
+def gm_all_radius (num_nodes, max_iter = gm_param_radius_max_iter, indexflag):
     starttime = time.time()
     hop_table = "GM_RD_HOP"
     max_hop_ngh = "GM_RD_MAX_HOP_NGH"
@@ -456,13 +457,13 @@ def gm_all_radius (num_nodes, indexflag, max_iter = gm_param_radius_max_iter):
 
     time1 = time.time()
     if(indexflag[0]=='1'):
-        cur.execute ("CREATE INDEX src_id_index_undirect ON GM_TABLE_UNDIRECTED (src_id)")
+        cur.execute ("CREATE INDEX src_id_index_undirect ON GM_TABLE_UNDIRECT (src_id)")
     time2 = time.time()
     print "index:", (time2-time1)*1000.0
 
     time1 = time.time()
     if(indexflag[1]=='1'):
-        cur.execute ("CREATE INDEX src_id_index_undirect ON GM_TABLE_UNDIRECTED USING hash (src_id)")
+        cur.execute ("CREATE INDEX src_id_index_undirect ON GM_TABLE_UNDIRECT USING hash (src_id)")
     time2 = time.time()
     print "index:", (time2-time1)*1000.0
 
@@ -475,13 +476,13 @@ def gm_all_radius (num_nodes, indexflag, max_iter = gm_param_radius_max_iter):
 
         time1 = time.time()
         if(indexflag[2]=='1'):
-            cur.execute ("CREATE INDEX node_id_index_%s " % prev_hop_table + " ON %s" % prev_hop_table + " (node_id)" )
+            cur.execute ("CREATE INDEX node_id_index_%s " % prev_hop_table + " ON prev_hop_table (node_id)" )
         time2 = time.time()
         print "index:", (time2-time1)*1000.0
 
         time1 = time.time()
         if(indexflag[3]=='1'):
-            cur.execute ("CREATE INDEX node_id_index_%s " % prev_hop_table + " ON %s" % prev_hop_table + " USING hash (node_id)" )
+            cur.execute ("CREATE INDEX node_id_index_%s " % prev_hop_table + " ON prev_hop_table USING hash (node_id)" )
         time2 = time.time()
         print "index:", (time2-time1)*1000.0
 
@@ -511,7 +512,7 @@ def gm_all_radius (num_nodes, indexflag, max_iter = gm_param_radius_max_iter):
 
     time1 = time.time()
     if(indexflag[4]=='1'):
-        cur.execute ("CREATE INDEX id_index_max_hop_ngh ON GM_RD_MAX_HOP_NGH (id)")
+        cur.execute ("CREATE INDEX id_index_max_hop_ngh ON max_hop_ngh (id)")
     time2 = time.time()
     print "index:", (time2-time1)*1000.0
 
@@ -687,7 +688,7 @@ def gm_eigen_QR_iterate(T, n, EVal, EVec, steps, err, indexflag):
     print "index:", (endtime - starttime)*1000.0
 
 
-def gm_eigen (steps, num_nodes, err1, err2, indexflag, adj_table=GM_TABLE_UNDIRECT):
+def gm_eigen (steps, num_nodes, err1, err2, adj_table=GM_TABLE_UNDIRECT,indexflag):
 
     QR_max_iter = gm_param_qr_max_iter
     QR_stop_threshold = gm_param_qr_thres
@@ -869,7 +870,8 @@ def gm_eigen (steps, num_nodes, err1, err2, indexflag, adj_table=GM_TABLE_UNDIRE
 
 # Task 6: Fast Belief Propagation
 # ------------------------------------------------------------------------- #
-def gm_belief_propagation(belief_file, delim, undirected, indexflag, max_iterations = gm_param_bp_max_iter, stop_threshold = gm_param_bp_thres):
+def gm_belief_propagation(belief_file, delim, undirected, \
+                max_iterations = gm_param_bp_max_iter, stop_threshold = gm_param_bp_thres, indexflag):
     starttime = time.time()
     next_table = "GM_BP_NEXT"
     print "Computing belief propagation..."
@@ -912,7 +914,7 @@ def gm_belief_propagation(belief_file, delim, undirected, indexflag, max_iterati
 
     time1 = time.time()
     if(indexflag[1]=='1'):
-        cur.execute("CREATE INDEX src_id_index_undirect ON GM_TABLE_UNDIRECTED (src_id)");
+        cur.execute("CREATE INDEX src_id_index_undirect ON GM_TABLE_UNDIRECT (src_id)");
     time2 = time.time()
     print "index:", (time2-time1)*1000.0
 
@@ -937,7 +939,7 @@ def gm_belief_propagation(belief_file, delim, undirected, indexflag, max_iterati
 
     time1 = time.time()
     if(indexflag[5]=='1'):
-        cur.execute("CREATE INDEX src_id_index_undirect ON GM_TABLE_UNDIRECTED USING hash (src_id)");
+        cur.execute("CREATE INDEX src_id_index_undirect ON GM_TABLE_UNDIRECT USING hash (src_id)");
     time2 = time.time()
     print "index:", (time2-time1)*1000.0
 
@@ -1139,28 +1141,12 @@ def main():
         gm_node_degrees()
 
         # Tasks
-
-        # CREATE INDEX in_degree_index ON GM_NODE_DEGREES (in_degree)
-        # CREATE INDEX out_degree_index ON GM_NODE_DEGREES (out_degree)
-        gm_degree_distribution(args.undirected,'10')                 # Degree distribution
-        # kcore(args)
-
-        # CREATE INDEX src_id_index ON GM_TABLE (src_id) ///hash
-        # CREATE INDEX src_id_index_norm ON norm_table (src_id) ///hash
-        # CREATE INDEX node_id_index_offset ON offset_table (node_id) ///hash
-        # CREATE INDEX CONCURRENTLY node_id_index_pagerank ON GM_PAGERANK (node_id) ///hash
-        gm_pagerank(num_nodes,'10101010')                                  # Pagerank
-
-        # gm_connected_components(num_nodes)                      # Connected components
-
-        # CREATE INDEX row_id_index_%s" % (EVal) + " ON %s" % (EVal) + " (row_id)
-        # CREATE INDEX col_id_index_%s" % (EVal) + " ON %s" % (EVal) + " (col_id)
+        gm_degree_distribution(args.undirected,'11')                 # Degree distribution
+        kcore(args)
+        gm_pagerank(num_nodes,'11111111')                                  # Pagerank
+        gm_connected_components(num_nodes)                      # Connected components
         gm_eigen(gm_param_eig_max_iter, num_nodes, gm_param_eig_thres1, gm_param_eig_thres2,'11')
-
-        # CREATE INDEX src_id_index_undirect ON GM_TABLE_UNDIRECT (src_id) ///hash
-        # CREATE INDEX node_id_index_%s " % prev_hop_table + " ON prev_hop_table (node_id) ///hash
-        # CREATE INDEX id_index_max_hop_ngh ON max_hop_ngh (id)
-        gm_all_radius(num_nodes,'10101')
+        gm_all_radius(num_nodes,'11111')
         if (args.belief_file):
             gm_belief_propagation(args.belief_file, args.delimiter, args.undirected, '11111111')
 
