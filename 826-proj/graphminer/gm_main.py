@@ -403,9 +403,21 @@ def gm_connected_components (num_nodes, indexflag):
                              "node_id integer, component_id integer", \
                              "node_id, component_id", "node_id, node_id")
 
-    while True:
-        gm_sql_table_drop_create(db_conn, temp_table,"node_id integer, component_id integer")
+    time1 = time.time()
+    if(indexflag[0]=='1'):
+        cur.execute ("CREATE INDEX GM_TABLE_UNDIRECT_INDEX_CC ON GM_TABLE_UNDIRECTED (src_id)");
+    time2 = time.time()
+    print "index:", (time2-time1)*1000.0
 
+    while True:
+
+        time1 = time.time()
+        if(indexflag[1]=='1'):
+            cur.execute ("CREATE INDEX TEMP_TABLE_INDEX_CC ON GM_CC_TEMP (node_id)");
+        time2 = time.time()
+        print "index:", (time2-time1)*1000.0
+
+        gm_sql_table_drop_create(db_conn, temp_table,"node_id integer, component_id integer")
         # Set component id as the min{component ids of neighbours, node's componet id}
         cur.execute("INSERT INTO %s " % temp_table +
                             " SELECT node_id, MIN(component_id) \"component_id\" FROM (" +
@@ -415,6 +427,13 @@ def gm_connected_components (num_nodes, indexflag):
                                 " SELECT * FROM %s" %  GM_CON_COMP +
                             " ) \"T\" GROUP BY node_id")
         db_conn.commit()
+
+        time1 = time.time()
+        if(indexflag[2]=='1'):
+            cur.execute ("CREATE INDEX GM_TABLE_UNDIRECT_INDEX_CC ON GM_TABLE_UNDIRECTED (node_id)");
+
+        time2 = time.time()
+        print "index:", (time2-time1)*1000.0
 
         diff = gm_sql_vect_diff(db_conn, GM_CON_COMP, temp_table, "node_id", "node_id", "component_id", "component_id")
 
@@ -688,7 +707,7 @@ def gm_eigen_QR_iterate(T, n, EVal, EVec, steps, err, indexflag):
 
 
 def gm_eigen (steps, num_nodes, err1, err2, indexflag, adj_table=GM_TABLE_UNDIRECT):
-
+    starttime = time.time()
     QR_max_iter = gm_param_qr_max_iter
     QR_stop_threshold = gm_param_qr_thres
 
@@ -712,6 +731,17 @@ def gm_eigen (steps, num_nodes, err1, err2, indexflag, adj_table=GM_TABLE_UNDIRE
                              "id integer, value double precision", \
                              "id, value", "node_id, 0")
 
+    time1 = time.time()
+    if(indexflag[2]=='1'):
+        cur.execute("CREATE INDEX col_id_index_%s" % (basis_vect_0) + " ON %s" % (basis_vect_0) + " (id)")
+    time2 = time.time()
+    print "index:", (time2-time1)*1000.0
+
+    time1 = time.time()
+    if(indexflag[3]=='1'):
+        cur.execute("CREATE INDEX col_id_index_%s" % (basis_vect_1) + " ON %s" % (basis_vect_1) + " (id)")
+    time2 = time.time()
+    print "index:", (time2-time1)*1000.0
     # Create table to store the basis vectors
     gm_sql_table_drop_create(db_conn, basis,"row_id integer, col_id integer, value double precision")
 
@@ -865,7 +895,8 @@ def gm_eigen (steps, num_nodes, err1, err2, indexflag, adj_table=GM_TABLE_UNDIRE
     gm_sql_table_drop(db_conn, tridiag_table)
     gm_sql_table_drop(db_conn, diag_table)
     gm_sql_table_drop(db_conn, eigvec_table)
-
+    endtime = time.time()
+    print "whole:", (endtime - starttime) * 1000.0
 
 # Task 6: Fast Belief Propagation
 # ------------------------------------------------------------------------- #
@@ -1142,27 +1173,33 @@ def main():
 
         # CREATE INDEX in_degree_index ON GM_NODE_DEGREES (in_degree)
         # CREATE INDEX out_degree_index ON GM_NODE_DEGREES (out_degree)
-        gm_degree_distribution(args.undirected,'10')                 # Degree distribution
+        # gm_degree_distribution(args.undirected,'10')                 # Degree distribution
         # kcore(args)
 
         # CREATE INDEX src_id_index ON GM_TABLE (src_id) ///hash
         # CREATE INDEX src_id_index_norm ON norm_table (src_id) ///hash
         # CREATE INDEX node_id_index_offset ON offset_table (node_id) ///hash
         # CREATE INDEX CONCURRENTLY node_id_index_pagerank ON GM_PAGERANK (node_id) ///hash
-        gm_pagerank(num_nodes,'10101010')                                  # Pagerank
+        # gm_pagerank(num_nodes,'10101010')                                  # Pagerank
 
-        # gm_connected_components(num_nodes)                      # Connected components
+
+        # CREATE INDEX GM_TABLE_UNDIRECT_INDEX_CC ON GM_TABLE_UNDIRECTED (node_id)
+        # CREATE INDEX TEMP_TABLE_INDEX_CC ON GM_CC_TEMP (node_id)
+        # CREATE INDEX GM_TABLE_UNDIRECT_INDEX_CC ON GM_TABLE_UNDIRECTED (node_id)
+        # gm_connected_components(num_nodes, '100')                      # Connected components
 
         # CREATE INDEX row_id_index_%s" % (EVal) + " ON %s" % (EVal) + " (row_id)
         # CREATE INDEX col_id_index_%s" % (EVal) + " ON %s" % (EVal) + " (col_id)
-        gm_eigen(gm_param_eig_max_iter, num_nodes, gm_param_eig_thres1, gm_param_eig_thres2,'11')
+        # CREATE INDEX col_id_index_%s" % (basis_vect_0) + " ON %s" % (basis_vect_0) + " (id)
+        # CREATE INDEX col_id_index_%s" % (basis_vect_1) + " ON %s" % (basis_vect_1) + " (id)
+        gm_eigen(gm_param_eig_max_iter, num_nodes, gm_param_eig_thres1, gm_param_eig_thres2,'0000')
 
         # CREATE INDEX src_id_index_undirect ON GM_TABLE_UNDIRECT (src_id) ///hash
         # CREATE INDEX node_id_index_%s " % prev_hop_table + " ON prev_hop_table (node_id) ///hash
         # CREATE INDEX id_index_max_hop_ngh ON max_hop_ngh (id)
-        gm_all_radius(num_nodes,'10101')
-        if (args.belief_file):
-            gm_belief_propagation(args.belief_file, args.delimiter, args.undirected, '11111111')
+        # gm_all_radius(num_nodes,'10101')
+        # if (args.belief_file):
+        #     gm_belief_propagation(args.belief_file, args.delimiter, args.undirected, '11111111')
 
 
         # gm_eigen_triangle_count()

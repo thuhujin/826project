@@ -13,7 +13,7 @@ Degree Distribution:(index on node degree (in degree, out degree))(run 10 times,
 1351.35889053
 
 
-From the experiment, creatint index will improve performance in general if we created index and used it later a lot.
+From the experiment, create index will improve performance in general if we created index and used it later a lot.
 
 Also, for a certain algorithm, create index for some tables like GM_NODES are expensive, but if re run all the algorithms,
 or use the algorithm multiple times, then the cost of creating index on tables like GM_NODES will be worth the effort.
