@@ -1,0 +1,39 @@
+Connected To Database
+Loaded data from /afs/andrew.cmu.edu/usr14/jinh/phase2/data/email-Enron.ungraph.txt
+Computing Node degrees...
+Computing Weakly Connected Components...
+index: 1114.40205574
+index: 61.9540214539
+index: 59.4110488892
+Error = 2925285.11109
+index: 59.8909854889
+index: 34.3708992004
+Error = 1136020.09812
+index: 61.4240169525
+index: 61.3811016083
+Error = 441913.377709
+index: 65.1879310608
+index: 58.944940567
+Error = 119573.986485
+index: 60.0440502167
+index: 59.1468811035
+Error = 36702.101602
+index: 60.5621337891
+index: 60.9350204468
+Error = 1775.80150918
+index: 59.4871044159
+index: 59.0031147003
+Error = 122.241564126
+index: 59.5560073853
+index: 59.4699382782
+Error = 17.2626765016
+index: 60.1298809052
+index: 59.4730377197
+Error = 1.41421356237
+index: 59.6528053284
+index: 59.4089031219
+Error = 0.0
+Component IDs has converged
+Number of Components = 1065
+whole: 15775.5551338
+Disconnected From Database

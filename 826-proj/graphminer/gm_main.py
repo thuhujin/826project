@@ -426,13 +426,13 @@ def gm_connected_components (num_nodes, indexflag):
 
         time1 = time.time()
         if(indexflag[1]=='1'):
-            cur.execute ("CREATE INDEX TEMP_TABLE_INDEX_CC ON GM_CC_TEMP (node_id)");
+            cur.execute ("CREATE INDEX TEMP_TABLE_INDEX_CC ON %s" % temp_table + " (node_id)");
         time2 = time.time()
         print "index:", (time2-time1)*1000.0
 
         time1 = time.time()
         if(indexflag[2]=='1'):
-            cur.execute ("CREATE INDEX GM_TABLE_UNDIRECT_INDEX_CC ON GM_TABLE_UNDIRECTED (node_id)");
+            cur.execute ("CREATE INDEX GM_CON_COMP_CC ON %s " % GM_CON_COMP + " (node_id)");
 
         time2 = time.time()
         print "index:", (time2-time1)*1000.0
@@ -1190,13 +1190,13 @@ def main():
         # CREATE INDEX GM_TABLE_UNDIRECT_INDEX_CC ON GM_TABLE_UNDIRECTED (node_id)
         # CREATE INDEX TEMP_TABLE_INDEX_CC ON GM_CC_TEMP (node_id)
         # CREATE INDEX GM_TABLE_UNDIRECT_INDEX_CC ON GM_TABLE_UNDIRECTED (node_id)
-        # gm_connected_components(num_nodes, '010')                      # Connected components
+        gm_connected_components(num_nodes, '111')                      # Connected components
 
         # CREATE INDEX row_id_index_%s" % (EVal) + " ON %s" % (EVal) + " (row_id)
         # CREATE INDEX col_id_index_%s" % (EVal) + " ON %s" % (EVal) + " (col_id)
         # CREATE INDEX col_id_index_%s" % (basis_vect_0) + " ON %s" % (basis_vect_0) + " (id)
         # CREATE INDEX col_id_index_%s" % (basis_vect_1) + " ON %s" % (basis_vect_1) + " (id)
-        gm_eigen(gm_param_eig_max_iter, num_nodes, gm_param_eig_thres1, gm_param_eig_thres2,'0011')
+        # gm_eigen(gm_param_eig_max_iter, num_nodes, gm_param_eig_thres1, gm_param_eig_thres2,'0011')
 
         # CREATE INDEX src_id_index_undirect ON GM_TABLE_UNDIRECT (src_id) ///hash
         # CREATE INDEX node_id_index_%s " % prev_hop_table + " ON prev_hop_table (node_id) ///hash

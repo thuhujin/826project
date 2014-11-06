@@ -1,0 +1,36 @@
+Connected To Database
+Loaded data from /afs/andrew.cmu.edu/usr14/jinh/phase2/data/cit-HepPh.txt
+Computing Node degrees...
+Computing Weakly Connected Components...
+index: 796.835899353
+index: 0.00214576721191
+index: 0.00286102294922
+Error = 1157749797.95
+index: 0.00190734863281
+index: 0.00286102294922
+Error = 773877236.858
+index: 0.00190734863281
+index: 0.00309944152832
+Error = 171279515.008
+index: 0.00190734863281
+index: 0.00309944152832
+Error = 58877548.1303
+index: 0.00309944152832
+index: 0.00405311584473
+Error = 23057202.8886
+index: 0.00190734863281
+index: 0.00309944152832
+Error = 203896.312586
+index: 0.00214576721191
+index: 0.00405311584473
+Error = 6345.70145847
+index: 0.00190734863281
+index: 0.00286102294922
+Error = 18.7349939952
+index: 0.00286102294922
+index: 0.00309944152832
+Error = 0.0
+Component IDs has converged
+Number of Components = 61
+whole: 14657.0911407
+Disconnected From Database

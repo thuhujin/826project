@@ -1,0 +1,39 @@
+Connected To Database
+Loaded data from /afs/andrew.cmu.edu/usr14/jinh/phase2/data/ca-AstroPh.txt
+Computing Node degrees...
+Computing Weakly Connected Components...
+index: 758.046150208
+index: 34.2650413513
+index: 34.4741344452
+Error = 8903392.54711
+index: 33.2880020142
+index: 32.5770378113
+Error = 3001023.16995
+index: 35.3519916534
+index: 34.1520309448
+Error = 696788.773313
+index: 34.3568325043
+index: 33.9279174805
+Error = 176307.040787
+index: 35.847902298
+index: 35.5000495911
+Error = 41268.9099929
+index: 35.6061458588
+index: 34.6660614014
+Error = 11349.218255
+index: 40.8828258514
+index: 35.0170135498
+Error = 6403.60336061
+index: 35.3488922119
+index: 35.0089073181
+Error = 2170.81321168
+index: 34.5220565796
+index: 34.1348648071
+Error = 210.054754766
+index: 35.3808403015
+index: 40.1918888092
+Error = 0.0
+Component IDs has converged
+Number of Components = 290
+whole: 13885.2388859
+Disconnected From Database

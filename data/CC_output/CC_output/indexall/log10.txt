@@ -1,0 +1,33 @@
+Connected To Database
+Loaded data from /afs/andrew.cmu.edu/usr14/jinh/phase2/data/soc-Slashdot0811-75000.txt
+Computing Node degrees...
+Computing Weakly Connected Components...
+index: 1292.54484177
+index: 119.095087051
+index: 114.357948303
+Error = 8654266.68364
+index: 112.106800079
+index: 119.766950607
+Error = 3820409.54156
+index: 155.204772949
+index: 153.788089752
+Error = 1108436.2167
+index: 111.820936203
+index: 113.170862198
+Error = 310729.261573
+index: 115.737915039
+index: 119.525909424
+Error = 66567.6207927
+index: 67.2631263733
+index: 66.0769939423
+Error = 3825.84866402
+index: 115.678071976
+index: 112.278938293
+Error = 100.831542684
+index: 117.632865906
+index: 116.394996643
+Error = 0.0
+Component IDs has converged
+Number of Components = 2091
+whole: 22121.2539673
+Disconnected From Database
