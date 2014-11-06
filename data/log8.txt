@@ -1,0 +1,125 @@
+Connected To Database
+Loaded data from /afs/andrew.cmu.edu/usr14/jinh/phase2/data/email-EuAll.txt
+Computing Node degrees...
+Computing Degree distribution of the nodes...
+Computing PageRanks...
+Iteration = 1, Error = 0.053032
+Iteration = 2, Error = 0.044176
+Iteration = 3, Error = 0.035946
+Iteration = 4, Error = 0.030008
+Iteration = 5, Error = 0.024609
+Iteration = 6, Error = 0.020587
+Iteration = 7, Error = 0.016961
+Iteration = 8, Error = 0.014213
+Iteration = 9, Error = 0.011749
+Iteration = 10, Error = 0.009859
+Computing Weakly Connected Components...
+Error = 68867729.263
+Error = 19258075.4009
+Error = 2601852.17093
+Error = 763849.995912
+Error = 281458.949311
+Error = 61151.8002679
+Error = 309.569055301
+Error = 1334.51451847
+Error = 56.92978131
+Error = 6.32455532034
+Error = 0.0
+Component IDs has converged
+Number of Components = 15836
+Computing Eigenvalues...
+Iteration No: 1
+Iteration No: 2
+Performing QR Algorithm. Max Iters=500, Stop threshold=0.01
+QR Algorithm Error = 9.67945837675
+QR Algorithm Error = 2.3852294168
+QR Algorithm Error = 0.581454337672
+QR Algorithm Error = 0.14165135384
+QR Algorithm Error = 0.0345071587326
+QR Algorithm Error = 0.0084061413004
+Iteration No: 3
+Performing QR Algorithm. Max Iters=500, Stop threshold=0.01
+QR Algorithm Error = 62.2471634416
+QR Algorithm Error = 30.543072593
+QR Algorithm Error = 13.8769335551
+QR Algorithm Error = 6.20235581564
+QR Algorithm Error = 2.76304833236
+QR Algorithm Error = 1.23008705188
+QR Algorithm Error = 0.54755383205
+QR Algorithm Error = 0.243728673313
+QR Algorithm Error = 0.108488626853
+QR Algorithm Error = 0.0482904621297
+QR Algorithm Error = 0.0214950482246
+QR Algorithm Error = 0.00956787447215
+Performing QR Algorithm. Max Iters=500, Stop threshold=0.01
+QR Algorithm Error = 62.2471634416
+QR Algorithm Error = 30.543072593
+QR Algorithm Error = 13.8769335551
+QR Algorithm Error = 6.20235581564
+QR Algorithm Error = 2.76304833236
+QR Algorithm Error = 1.23008705188
+QR Algorithm Error = 0.54755383205
+QR Algorithm Error = 0.243728673313
+QR Algorithm Error = 0.108488626853
+QR Algorithm Error = 0.0482904621297
+QR Algorithm Error = 0.0214950482246
+QR Algorithm Error = 0.00956787447215
+Getting EigenValues...
+Getting top 3 EigenVectors...
+Getting eigenvector 1
+Getting eigenvector 2
+Getting eigenvector 3
+EigenValues computed: 
+(1, 134.566386767222)
+(2, -59.8981805051352)
+(3, 6.47057280617801)
+Computing radius of every node...
+Hop number : 1
+Current Error = 331433.631555
+Hop number : 2
+Current Error = 23787871.8953
+Hop number : 3
+Current Error = 27461473.8946
+Hop number : 4
+Current Error = 152777657.579
+Hop number : 5
+Current Error = 108251977.921
+Hop number : 6
+Current Error = 25662222.0586
+Hop number : 7
+Current Error = 6244755.79344
+Hop number : 8
+Current Error = 1879320.99479
+Hop number : 9
+Current Error = 862599.512061
+Hop number : 10
+Current Error = 3212266.94542
+Hop number : 11
+Current Error = 0.0
+Convergence acheived
+Getting nodes with eff. radius 0
+Getting nodes with eff. radius 1
+Getting nodes with eff. radius 2
+Getting nodes with eff. radius 3
+Getting nodes with eff. radius 4
+Getting nodes with eff. radius 5
+Getting nodes with eff. radius 6
+Getting nodes with eff. radius 7
+Getting nodes with eff. radius 8
+Getting nodes with eff. radius 9
+Getting nodes with eff. radius 10
+Getting nodes with eff. radius 11
+Maximum effective radius = 10
+Computing the count of triangles...
+Number of Triangles = 370351.993452
+Saving tables...
+Saved table GM_DEGREE_DISTRIBUTION to /afs/andrew.cmu.edu/usr14/jinh/phase2/phase2/graphminer/output8/degreedist.csv
+Saved table GM_INDEGREE_DISTRIBUTION to /afs/andrew.cmu.edu/usr14/jinh/phase2/phase2/graphminer/output8/indegreedist.csv
+Saved table GM_OUTDEGREE_DISTRIBUTION to /afs/andrew.cmu.edu/usr14/jinh/phase2/phase2/graphminer/output8/outdegreedist.csv
+Saved table GM_NODE_DEGREES to /afs/andrew.cmu.edu/usr14/jinh/phase2/phase2/graphminer/output8/degree.csv
+Saved table GM_PAGERANK to /afs/andrew.cmu.edu/usr14/jinh/phase2/phase2/graphminer/output8/pagerank.csv
+Saved table GM_CON_COMP to /afs/andrew.cmu.edu/usr14/jinh/phase2/phase2/graphminer/output8/conncomp.csv
+Saved table GM_RADIUS to /afs/andrew.cmu.edu/usr14/jinh/phase2/phase2/graphminer/output8/radius.csv
+Saved table GM_EIG_VALUES to /afs/andrew.cmu.edu/usr14/jinh/phase2/phase2/graphminer/output8/eigval.csv
+Saved table GM_EIG_VECTORS to /afs/andrew.cmu.edu/usr14/jinh/phase2/phase2/graphminer/output8/eigvec.csv
+Disconnected From Database
