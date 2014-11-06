@@ -1,0 +1,15 @@
+Connected To Database
+Loaded data from /afs/andrew.cmu.edu/usr14/jinh/phase2/data/com-dblp.ungraph-75000.txt
+Computing Node degrees...
+Computing PageRanks...
+index: 337.762117386
+index: 0.00190734863281
+index: 617.386102676
+index: 0.00190734863281
+index: 233.864068985
+index: 0.00190734863281
+index: 186.105012894
+index: 0.00214576721191
+Iteration = 1, Error = 0.006234
+whole: 6750.31781197
+Disconnected From Database

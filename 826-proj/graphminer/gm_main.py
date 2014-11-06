@@ -1180,13 +1180,13 @@ def main():
         # CREATE INDEX src_id_index_norm ON norm_table (src_id) ///hash
         # CREATE INDEX node_id_index_offset ON offset_table (node_id) ///hash
         # CREATE INDEX CONCURRENTLY node_id_index_pagerank ON GM_PAGERANK (node_id) ///hash
-        gm_pagerank(num_nodes,'00000000')                                  # Pagerank
+        # gm_pagerank(num_nodes,'10101010')                                  # Pagerank
 
 
         # CREATE INDEX GM_TABLE_UNDIRECT_INDEX_CC ON GM_TABLE_UNDIRECTED (node_id)
         # CREATE INDEX TEMP_TABLE_INDEX_CC ON GM_CC_TEMP (node_id)
         # CREATE INDEX GM_TABLE_UNDIRECT_INDEX_CC ON GM_TABLE_UNDIRECTED (node_id)
-        # gm_connected_components(num_nodes, '100')                      # Connected components
+        gm_connected_components(num_nodes, '000')                      # Connected components
 
         # CREATE INDEX row_id_index_%s" % (EVal) + " ON %s" % (EVal) + " (row_id)
         # CREATE INDEX col_id_index_%s" % (EVal) + " ON %s" % (EVal) + " (col_id)

@@ -1,0 +1,33 @@
+Connected To Database
+Loaded data from /afs/andrew.cmu.edu/usr14/jinh/phase2/data/email-Enron.ungraph.txt
+Computing Node degrees...
+Computing PageRanks...
+index: 848.531007767
+index: 0.00190734863281
+index: 1332.96489716
+index: 0.00500679016113
+index: 91.383934021
+index: 0.00190734863281
+index: 96.8971252441
+index: 0.00214576721191
+Iteration = 1, Error = 0.039885
+index: 75.6890773773
+index: 0.00214576721191
+Iteration = 2, Error = 0.030033
+index: 89.0610218048
+index: 0.00190734863281
+Iteration = 3, Error = 0.020027
+index: 97.7809429169
+index: 0.000953674316406
+Iteration = 4, Error = 0.016184
+index: 76.8349170685
+index: 0.00190734863281
+Iteration = 5, Error = 0.012232
+index: 76.6429901123
+index: 0.00214576721191
+Iteration = 6, Error = 0.010042
+index: 75.1922130585
+index: 0.000953674316406
+Iteration = 7, Error = 0.007745
+whole: 19712.444067
+Disconnected From Database

@@ -1,0 +1,15 @@
+Connected To Database
+Loaded data from /afs/andrew.cmu.edu/usr14/jinh/phase2/data/p2p-Gnutella31.txt
+Computing Node degrees...
+Computing PageRanks...
+index: 235.121011734
+index: 0.00190734863281
+index: 336.748123169
+index: 0.00190734863281
+index: 108.373165131
+index: 0.00214576721191
+index: 107.496023178
+index: 0.00190734863281
+Iteration = 1, Error = 0.005919
+whole: 5047.42884636
+Disconnected From Database

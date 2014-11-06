@@ -1,0 +1,21 @@
+Connected To Database
+Loaded data from /afs/andrew.cmu.edu/usr14/jinh/phase2/data/as-skitter.ungraph-75000.txt
+Computing Node degrees...
+Computing PageRanks...
+index: 0.00286102294922
+index: 0.0
+index: 0.00190734863281
+index: 0.000953674316406
+index: 0.0
+index: 0.0
+index: 175.206899643
+index: 0.00190734863281
+Iteration = 1, Error = 0.016769
+index: 249.475002289
+index: 0.00190734863281
+Iteration = 2, Error = 0.012603
+index: 209.846973419
+index: 0.00214576721191
+Iteration = 3, Error = 0.009786
+whole: 9627.02202797
+Disconnected From Database
