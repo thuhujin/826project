@@ -1173,14 +1173,14 @@ def main():
 
         # CREATE INDEX in_degree_index ON GM_NODE_DEGREES (in_degree)
         # CREATE INDEX out_degree_index ON GM_NODE_DEGREES (out_degree)
-        # gm_degree_distribution(args.undirected,'10')                 # Degree distribution
+        # gm_degree_distribution(args.undirected,'11')                 # Degree distribution
         # kcore(args)
 
         # CREATE INDEX src_id_index ON GM_TABLE (src_id) ///hash
         # CREATE INDEX src_id_index_norm ON norm_table (src_id) ///hash
         # CREATE INDEX node_id_index_offset ON offset_table (node_id) ///hash
         # CREATE INDEX CONCURRENTLY node_id_index_pagerank ON GM_PAGERANK (node_id) ///hash
-        # gm_pagerank(num_nodes,'10101010')                                  # Pagerank
+        gm_pagerank(num_nodes,'00000000')                                  # Pagerank
 
 
         # CREATE INDEX GM_TABLE_UNDIRECT_INDEX_CC ON GM_TABLE_UNDIRECTED (node_id)
@@ -1192,7 +1192,7 @@ def main():
         # CREATE INDEX col_id_index_%s" % (EVal) + " ON %s" % (EVal) + " (col_id)
         # CREATE INDEX col_id_index_%s" % (basis_vect_0) + " ON %s" % (basis_vect_0) + " (id)
         # CREATE INDEX col_id_index_%s" % (basis_vect_1) + " ON %s" % (basis_vect_1) + " (id)
-        gm_eigen(gm_param_eig_max_iter, num_nodes, gm_param_eig_thres1, gm_param_eig_thres2,'0000')
+        # gm_eigen(gm_param_eig_max_iter, num_nodes, gm_param_eig_thres1, gm_param_eig_thres2,'0000')
 
         # CREATE INDEX src_id_index_undirect ON GM_TABLE_UNDIRECT (src_id) ///hash
         # CREATE INDEX node_id_index_%s " % prev_hop_table + " ON prev_hop_table (node_id) ///hash
@@ -1206,7 +1206,7 @@ def main():
         #gm_naive_triangle_count()
 
         # Save tables to disk
-        gm_save_tables(args.dest_dir, args.belief_file)
+        # gm_save_tables(args.dest_dir, args.belief_file)
         #gm_anomaly_detection()
 
         gm_db_bubye(db_conn)

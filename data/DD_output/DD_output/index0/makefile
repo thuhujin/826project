@@ -32,3 +32,4 @@ all.tar:
 
 clean:
 	rm *.pyc
+

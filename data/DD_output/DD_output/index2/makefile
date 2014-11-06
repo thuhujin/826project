@@ -1,14 +1,4 @@
 all:
-	mkdir output1
-	mkdir output2
-	mkdir output3
-	mkdir output4
-	mkdir output5
-	mkdir output6
-	mkdir output7
-	mkdir output8
-	mkdir output9
-	mkdir output10
 	python ../../gm_main.py --file /afs/andrew.cmu.edu/usr14/jinh/phase2/data/as-skitter.ungraph-75000.txt --dest_dir `pwd`/output1  --unweighted --undirected > log1.txt
 	python ../../gm_main.py --file /afs/andrew.cmu.edu/usr14/jinh/phase2/data/ca-AstroPh.txt --dest_dir `pwd`/output2  --unweighted --undirected > log2.txt
 	python ../../gm_main.py --file /afs/andrew.cmu.edu/usr14/jinh/phase2/data/cit-HepPh.txt --dest_dir `pwd`/output3  --unweighted --undirected > log3.txt
@@ -32,3 +22,4 @@ all.tar:
 
 clean:
 	rm *.pyc
+

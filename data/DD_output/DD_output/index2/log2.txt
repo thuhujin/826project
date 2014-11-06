@@ -1,0 +1,18 @@
+Connected To Database
+Loaded data from /afs/andrew.cmu.edu/usr14/jinh/phase2/data/ca-AstroPh.txt
+Computing Node degrees...
+Computing Degree distribution of the nodes...
+index: 0.00190734863281
+index: 33.0131053925
+whole: 131.398916245
+Saving tables...
+Saved table GM_DEGREE_DISTRIBUTION to /afs/andrew.cmu.edu/usr14/jinh/phase2/phase2/graphminer/DD_output/index2/output2/degreedist.csv
+Saved table GM_INDEGREE_DISTRIBUTION to /afs/andrew.cmu.edu/usr14/jinh/phase2/phase2/graphminer/DD_output/index2/output2/indegreedist.csv
+Saved table GM_OUTDEGREE_DISTRIBUTION to /afs/andrew.cmu.edu/usr14/jinh/phase2/phase2/graphminer/DD_output/index2/output2/outdegreedist.csv
+Saved table GM_NODE_DEGREES to /afs/andrew.cmu.edu/usr14/jinh/phase2/phase2/graphminer/DD_output/index2/output2/degree.csv
+Saved table GM_PAGERANK to /afs/andrew.cmu.edu/usr14/jinh/phase2/phase2/graphminer/DD_output/index2/output2/pagerank.csv
+Saved table GM_CON_COMP to /afs/andrew.cmu.edu/usr14/jinh/phase2/phase2/graphminer/DD_output/index2/output2/conncomp.csv
+Saved table GM_RADIUS to /afs/andrew.cmu.edu/usr14/jinh/phase2/phase2/graphminer/DD_output/index2/output2/radius.csv
+Saved table GM_EIG_VALUES to /afs/andrew.cmu.edu/usr14/jinh/phase2/phase2/graphminer/DD_output/index2/output2/eigval.csv
+Saved table GM_EIG_VECTORS to /afs/andrew.cmu.edu/usr14/jinh/phase2/phase2/graphminer/DD_output/index2/output2/eigvec.csv
+Disconnected From Database
