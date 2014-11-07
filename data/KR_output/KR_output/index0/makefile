@@ -6,15 +6,4 @@ all:
 	python /home/ubuntu/phase2/graphminer/gm_main.py --file /home/ubuntu/phase2/data/com-amazon.ungraph-75000.txt --dest_dir `pwd`/output5  --unweighted --undirected > log5.txt
 	python /home/ubuntu/phase2/graphminer/gm_main.py --file /home/ubuntu/phase2/data/com-dblp.ungraph-75000.txt --dest_dir `pwd`/output6  --unweighted --undirected > log6.txt
 	python /home/ubuntu/phase2/graphminer/gm_main.py --file /home/ubuntu/phase2/data/email-Enron.ungraph.txt --dest_dir `pwd`/output7  --unweighted --undirected > log7.txt
-unit:
-	chmod a+rwx `pwd`
-	python preprocess_unit.py < inputfilelist_unit.txt
 
-install:
-	sudo apt-get install python-psycopg2
-
-all.tar:
-	tar -zcvf graphminer.tar.gz *.txt makefile *.py matlab output doc
-
-clean:
-	rm *.pyc
