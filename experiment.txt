@@ -22,3 +22,12 @@ or use the algorithm multiple times, then the cost of creating index on tables l
 python gm_main.py --file samplegraph.txt --dest_dir   --unweighted --undirected
 
 python gm_main.py --file /afs/andrew.cmu.edu/usr14/jinh/phase2/phase2/graphminer/samplegraph.csv --dest_dir /afs/andrew.cmu.edu/usr14/jinh/phase2/phase2/graphminer/output/  --unweighted --undirected
+
+
+PostgreSQL provides several index types: B-tree, Hash, GiST, SP-GiST and GIN. Each index type uses a different algorithm that is best suited to different types of queries. By default, the CREATE INDEX command creates B-tree indexes, which fit the most common situations. Hash is used in the case that there are lots of equality judgement as it can compare the value easily through the hash value. For the other three types, it is used in geo data, so they are not applicable in our experiment.
+
+After first test with several index creation time, we found that hash type idex creation cost much longer time than the B-tree type, which will definitely drop down the performance in our experiment. So we decided to use only the B-tree type index.
+
+
+
+
