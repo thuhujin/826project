@@ -1,0 +1,42 @@
+Connected To Database
+Loaded data from /afs/andrew.cmu.edu/usr14/jinh/phase2/data/email-EuAll.txt
+Computing Node degrees...
+Computing Weakly Connected Components...
+index: 1641.8659687
+index: 0.00214576721191
+index: 0.00405311584473
+Error = 68867729.263
+index: 0.00309944152832
+index: 0.00286102294922
+Error = 19258075.4009
+index: 0.00286102294922
+index: 0.00500679016113
+Error = 2601852.17093
+index: 0.00405311584473
+index: 0.00286102294922
+Error = 763849.995912
+index: 0.00286102294922
+index: 0.00309944152832
+Error = 281458.949311
+index: 0.00286102294922
+index: 0.00309944152832
+Error = 61151.8002679
+index: 0.00190734863281
+index: 0.00405311584473
+Error = 309.569055301
+index: 0.00309944152832
+index: 0.00286102294922
+Error = 1334.51451847
+index: 0.00596046447754
+index: 0.00405311584473
+Error = 56.92978131
+index: 0.00405311584473
+index: 0.00405311584473
+Error = 6.32455532034
+index: 0.00190734863281
+index: 0.00309944152832
+Error = 0.0
+Component IDs has converged
+Number of Components = 15836
+whole: 52163.3560658
+Disconnected From Database

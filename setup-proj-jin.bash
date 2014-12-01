@@ -2,12 +2,17 @@ PREFIX=826-proj
 POSTGRESPORT=5432
 
 # this works on AWS server
+mkdir 826-proj
+sudo apt-get update
 sudo apt-get install make
+sudo apt-get install unzip
 sudo apt-get install Bison
 sudo apt-get install Flex
 sudo apt-get install python-dev
-export LD_LIBRARY_PATH=/home/ubuntu/phase2/postgres/lib/
-sudo vim /etc/profile
+sudo apt-get install libreadline-dev
+sudo apt-get install zlib1g-dev
+export LD_LIBRARY_PATH=/home/ubuntu/826-proj/postgres/lib/
+# sudo vim /etc/profile
 # add export LD_LIBRARY_PATH=/home/ubuntu/phase2/postgres/lib/ to the file
 
 cd $PREFIX
@@ -40,7 +45,12 @@ echo "export POSTGRESPORT=$POSTGRESPORT" >> $HOME/.bashrc
 cd $PREFIX
 rm -rf psycopg2-2.5.4
 
-wget http://www.cs.cmu.edu/~christos/courses/826.F14/project-default-graphs/graphminer.tar.gz
+sudo apt-get install s3cmd
+s3cmd --configure
+s3cmd get s3://826projectdata/ . --recursive
+
+tar -xvf data.tar.gz
+tar -xvf datasets-phase3.tar.gz
 tar -xvf graphminer.tar.gz
 rm -f graphminer.tar.gz
 cd graphminer

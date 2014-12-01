@@ -1,0 +1,67 @@
+Connected To Database
+Loaded data from /afs/andrew.cmu.edu/usr14/jinh/phase2/data/email-EuAll.txt
+Computing Node degrees...
+Computing radius of every node...
+index: 0.00405311584473
+index: 0.000953674316406
+Hop number : 1
+index: 424.503087997
+index: 0.00190734863281
+Current Error = 331433.631555
+Hop number : 2
+index: 382.10105896
+index: 0.00214576721191
+Current Error = 23787871.8953
+Hop number : 3
+index: 347.735881805
+index: 0.00190734863281
+Current Error = 27461473.8946
+Hop number : 4
+index: 656.895875931
+index: 0.00214576721191
+Current Error = 152777657.579
+Hop number : 5
+index: 525.936126709
+index: 0.00190734863281
+Current Error = 108251977.921
+Hop number : 6
+index: 264.816999435
+index: 0.00190734863281
+Current Error = 25662222.0586
+Hop number : 7
+index: 455.61003685
+index: 0.00214576721191
+Current Error = 6244755.79344
+Hop number : 8
+index: 267.055034637
+index: 0.00214576721191
+Current Error = 1879320.99479
+Hop number : 9
+index: 478.1498909
+index: 0.00214576721191
+Current Error = 862599.512061
+Hop number : 10
+index: 409.206867218
+index: 0.00214576721191
+Current Error = 3212266.94542
+Hop number : 11
+index: 255.297899246
+index: 0.00214576721191
+Current Error = 0.0
+Convergence acheived
+index: 0.00286102294922
+Getting nodes with eff. radius 0
+Getting nodes with eff. radius 1
+Getting nodes with eff. radius 2
+Getting nodes with eff. radius 3
+Getting nodes with eff. radius 4
+Getting nodes with eff. radius 5
+Getting nodes with eff. radius 6
+Getting nodes with eff. radius 7
+Getting nodes with eff. radius 8
+Getting nodes with eff. radius 9
+Getting nodes with eff. radius 10
+Getting nodes with eff. radius 11
+Maximum effective radius = 10
+whole: 158208.256006
+Disconnected From Database

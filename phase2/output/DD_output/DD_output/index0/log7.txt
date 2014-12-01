@@ -1,0 +1,18 @@
+Connected To Database
+Loaded data from /afs/andrew.cmu.edu/usr14/jinh/phase2/data/email-Enron.ungraph.txt
+Computing Node degrees...
+Computing Degree distribution of the nodes...
+index: 0.00214576721191
+index: 0.00119209289551
+whole: 101.542949677
+Saving tables...
+Saved table GM_DEGREE_DISTRIBUTION to /afs/andrew.cmu.edu/usr14/jinh/phase2/phase2/graphminer/DD_output/index0/output7/degreedist.csv
+Saved table GM_INDEGREE_DISTRIBUTION to /afs/andrew.cmu.edu/usr14/jinh/phase2/phase2/graphminer/DD_output/index0/output7/indegreedist.csv
+Saved table GM_OUTDEGREE_DISTRIBUTION to /afs/andrew.cmu.edu/usr14/jinh/phase2/phase2/graphminer/DD_output/index0/output7/outdegreedist.csv
+Saved table GM_NODE_DEGREES to /afs/andrew.cmu.edu/usr14/jinh/phase2/phase2/graphminer/DD_output/index0/output7/degree.csv
+Saved table GM_PAGERANK to /afs/andrew.cmu.edu/usr14/jinh/phase2/phase2/graphminer/DD_output/index0/output7/pagerank.csv
+Saved table GM_CON_COMP to /afs/andrew.cmu.edu/usr14/jinh/phase2/phase2/graphminer/DD_output/index0/output7/conncomp.csv
+Saved table GM_RADIUS to /afs/andrew.cmu.edu/usr14/jinh/phase2/phase2/graphminer/DD_output/index0/output7/radius.csv
+Saved table GM_EIG_VALUES to /afs/andrew.cmu.edu/usr14/jinh/phase2/phase2/graphminer/DD_output/index0/output7/eigval.csv
+Saved table GM_EIG_VECTORS to /afs/andrew.cmu.edu/usr14/jinh/phase2/phase2/graphminer/DD_output/index0/output7/eigvec.csv
+Disconnected From Database

@@ -1,0 +1,36 @@
+Connected To Database
+Loaded data from /afs/andrew.cmu.edu/usr14/jinh/phase2/data/p2p-Gnutella31.txt
+Computing Node degrees...
+Computing Weakly Connected Components...
+index: 496.3991642
+index: 0.00214576721191
+index: 0.00405311584473
+Error = 4386598.47308
+index: 0.00190734863281
+index: 0.00405311584473
+Error = 6017875.71652
+index: 0.00286102294922
+index: 0.00405311584473
+Error = 1698615.77495
+index: 0.00309944152832
+index: 0.00405311584473
+Error = 275410.532774
+index: 0.00190734863281
+index: 0.00286102294922
+Error = 32217.5867035
+index: 0.00190734863281
+index: 0.00381469726562
+Error = 2221.82312527
+index: 0.00214576721191
+index: 0.00405311584473
+Error = 136.853936735
+index: 0.00309944152832
+index: 0.00286102294922
+Error = 1.41421356237
+index: 0.00214576721191
+index: 0.00500679016113
+Error = 0.0
+Component IDs has converged
+Number of Components = 12
+whole: 11825.5748749
+Disconnected From Database

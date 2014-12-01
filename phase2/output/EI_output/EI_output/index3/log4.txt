@@ -1,0 +1,101 @@
+Connected To Database
+Loaded data from /afs/andrew.cmu.edu/usr14/jinh/phase2/data/cit-HepTh.txt
+Computing Node degrees...
+Computing Eigenvalues...
+index: 54.4800758362
+index: 70.1558589935
+Iteration No: 1
+Iteration No: 2
+Performing QR Algorithm. Max Iters=500, Stop threshold=0.01
+index: 0.000953674316406
+index: 0.0
+QR Algorithm Error = 0.395307282262
+index: 0.00309944152832
+index: 0.0
+QR Algorithm Error = 0.0194229261229
+index: 0.00190734863281
+index: 0.000953674316406
+QR Algorithm Error = 0.000954304461327
+index: 1586.78197861
+Iteration No: 3
+Performing QR Algorithm. Max Iters=500, Stop threshold=0.01
+index: 0.00214576721191
+index: 0.000953674316406
+QR Algorithm Error = 23.2432124608
+index: 0.00190734863281
+index: 0.000953674316406
+QR Algorithm Error = 10.595652045
+index: 0.000953674316406
+index: 0.0
+QR Algorithm Error = 4.76969258575
+index: 0.00619888305664
+index: 0.0
+QR Algorithm Error = 2.14095658227
+index: 0.00214576721191
+index: 0.000953674316406
+QR Algorithm Error = 0.960437300942
+index: 0.00309944152832
+index: 0.00119209289551
+QR Algorithm Error = 0.430802681907
+index: 0.00214576721191
+index: 0.0
+QR Algorithm Error = 0.193231245489
+index: 0.000953674316406
+index: 0.0
+QR Algorithm Error = 0.0866710804353
+index: 0.00405311584473
+index: 0.00715255737305
+QR Algorithm Error = 0.0388750218192
+index: 0.000953674316406
+index: 0.000953674316406
+QR Algorithm Error = 0.0174368084303
+index: 0.00119209289551
+index: 0.0
+QR Algorithm Error = 0.00782101879429
+index: 7109.7548008
+Performing QR Algorithm. Max Iters=500, Stop threshold=0.01
+index: 0.00214576721191
+index: 0.00119209289551
+QR Algorithm Error = 23.2432124608
+index: 0.00500679016113
+index: 0.0
+QR Algorithm Error = 10.595652045
+index: 0.00190734863281
+index: 0.0
+QR Algorithm Error = 4.76969258575
+index: 0.000953674316406
+index: 0.0
+QR Algorithm Error = 2.14095658227
+index: 0.00286102294922
+index: 0.0
+QR Algorithm Error = 0.960437300942
+index: 0.00190734863281
+index: 0.0
+QR Algorithm Error = 0.430802681907
+index: 0.000953674316406
+index: 0.00119209289551
+QR Algorithm Error = 0.193231245489
+index: 0.00500679016113
+index: 0.0
+QR Algorithm Error = 0.0866710804353
+index: 0.00214576721191
+index: 0.00119209289551
+QR Algorithm Error = 0.0388750218192
+index: 0.000953674316406
+index: 0.000953674316406
+QR Algorithm Error = 0.0174368084303
+index: 0.00596046447754
+index: 0.0
+QR Algorithm Error = 0.00782101879429
+index: 6790.79699516
+Getting EigenValues...
+Getting top 3 EigenVectors...
+Getting eigenvector 1
+Getting eigenvector 2
+Getting eigenvector 3
+EigenValues computed: 
+(1, 108.100231537838)
+(2, -48.4867361923577)
+(3, 9.13228467602364)
+whole: 22393.9790726
+Disconnected From Database

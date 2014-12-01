@@ -1,0 +1,67 @@
+Connected To Database
+Loaded data from /afs/andrew.cmu.edu/usr14/jinh/phase2/data/cit-HepTh.txt
+Computing Node degrees...
+Computing radius of every node...
+index: 0.00309944152832
+index: 0.0
+Hop number : 1
+index: 50.5218505859
+index: 0.000953674316406
+Current Error = 116283.004975
+Hop number : 2
+index: 46.6029644012
+index: 0.00119209289551
+Current Error = 1054790.1422
+Hop number : 3
+index: 49.9551296234
+index: 0.000953674316406
+Current Error = 2780496.72405
+Hop number : 4
+index: 48.1300354004
+index: 0.00190734863281
+Current Error = 2679063.30738
+Hop number : 5
+index: 50.8868694305
+index: 0.00119209289551
+Current Error = 1516998.65499
+Hop number : 6
+index: 51.5730381012
+index: 0.000953674316406
+Current Error = 675996.325463
+Hop number : 7
+index: 49.4990348816
+index: 0.000953674316406
+Current Error = 313411.943002
+Hop number : 8
+index: 65.416097641
+index: 0.00190734863281
+Current Error = 139721.766035
+Hop number : 9
+index: 51.4039993286
+index: 0.00190734863281
+Current Error = 52484.9948843
+Hop number : 10
+index: 57.1649074554
+index: 0.00119209289551
+Current Error = 8192.0
+Hop number : 11
+index: 54.2678833008
+index: 0.00190734863281
+Current Error = 0.0
+Convergence acheived
+index: 0.00405311584473
+Getting nodes with eff. radius 0
+Getting nodes with eff. radius 1
+Getting nodes with eff. radius 2
+Getting nodes with eff. radius 3
+Getting nodes with eff. radius 4
+Getting nodes with eff. radius 5
+Getting nodes with eff. radius 6
+Getting nodes with eff. radius 7
+Getting nodes with eff. radius 8
+Getting nodes with eff. radius 9
+Getting nodes with eff. radius 10
+Getting nodes with eff. radius 11
+Maximum effective radius = 9
+whole: 25346.6558456
+Disconnected From Database

@@ -1,0 +1,15 @@
+Connected To Database
+Loaded data from /afs/andrew.cmu.edu/usr14/jinh/phase2/data/cit-HepTh.txt
+Computing Node degrees...
+Computing PageRanks...
+index: 368.006944656
+index: 0.00190734863281
+index: 1074.2931366
+index: 0.00190734863281
+index: 52.3948669434
+index: 0.000953674316406
+index: 50.2109527588
+index: 0.000953674316406
+Iteration = 1, Error = 0.007552
+whole: 8067.50798225
+Disconnected From Database

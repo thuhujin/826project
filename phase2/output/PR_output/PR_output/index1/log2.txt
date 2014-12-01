@@ -1,0 +1,15 @@
+Connected To Database
+Loaded data from /afs/andrew.cmu.edu/usr14/jinh/phase2/data/ca-AstroPh.txt
+Computing Node degrees...
+Computing PageRanks...
+index: 1373.55995178
+index: 0.00190734863281
+index: 0.00381469726562
+index: 0.0
+index: 0.0
+index: 0.0
+index: 0.000953674316406
+index: 0.0
+Iteration = 1, Error = 0.006543
+whole: 8312.68310547
+Disconnected From Database

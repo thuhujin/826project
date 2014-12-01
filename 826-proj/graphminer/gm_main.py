@@ -1210,7 +1210,7 @@ def main():
         # CREATE INDEX out_degree_index ON GM_NODE_DEGREES (out_degree)
         # gm_degree_distribution(args.undirected,'10')                 # Degree distribution
 
-        kcore(args,'1111')
+        kcore(args,'1000')
 
         # CREATE INDEX src_id_index ON GM_TABLE (src_id) ///hash
         # CREATE INDEX src_id_index_norm ON norm_table (src_id) ///hash

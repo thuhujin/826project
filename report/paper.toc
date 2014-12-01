@@ -8,7 +8,7 @@
 \contentsline {subsection}{\numberline {2.6}Papers read by Jin Hu}{4}
 \contentsline {section}{\numberline {3}Proposed Method}{5}
 \contentsline {section}{\numberline {4}Experiments}{5}
-\contentsline {section}{\numberline {5}Conclusions}{8}
-\contentsline {section}{\numberline {A}Appendix}{9}
-\contentsline {subsection}{\numberline {A.1}Labor Division}{9}
-\contentsline {subsection}{\numberline {A.2}Code for K-core}{9}
+\contentsline {section}{\numberline {5}Conclusions}{19}
+\contentsline {section}{\numberline {A}Appendix}{20}
+\contentsline {subsection}{\numberline {A.1}Labor Division}{20}
+\contentsline {subsection}{\numberline {A.2}Code for K-core}{20}

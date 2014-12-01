@@ -79,123 +79,154 @@ def gm_save_tables (dest_dir, belief):
                                   os.path.join(dest_dir,"eigvec.csv"), ",");
 
 
-def kcore (args):
-  global db_conn
-  global GM_TABLE
-  #Default Table names
-  TEMP_GM_TABLE = "TEMP_GM_TABLE"
-  TEMP_GM_TABLE_UNDIRECT = "TEMP_GM_TABLE_UNDIRECTED"
-  TEMP_GM_NODES = "TEMP_GM_NODES"
-  TEMP_GM_NODE_DEGREES = "TEMP_GM_NODE_DEGREES"
-  REMOVED_NODE_TABLE = "REMOVED_NODE_TABLE"
-  TEMP_GM_CON_COMP = "TEMP_GM_CON_COMP"
-  temp_table = "GM_CC_TEMP"
-  TEMP_GM_CON_COMP_2 = "TEMP_GM_CON_COMP_2"
-  cur = db_conn.cursor()
-  k = 5
-  i = 2
-  # create REMOVED_NODE_TABLE to record deleted node_id
-  gm_sql_table_drop_create(db_conn, REMOVED_NODE_TABLE, "node_id integer")
-  # create TEMP_GM_NODE_DEGREES
-  gm_sql_table_drop_create(db_conn, TEMP_GM_NODE_DEGREES, "node_id integer, \
-                           in_degree integer, out_degree integer")
-  gm_sql_table_drop_create(db_conn, TEMP_GM_TABLE, "src_id integer, dst_id integer, weight real default 1")
-  cur.execute ("INSERT INTO %s" % TEMP_GM_TABLE + " SELECT src_id, dst_id, weight FROM %s" % GM_TABLE_UNDIRECT)
-  cur.execute ("INSERT INTO %s" % TEMP_GM_NODE_DEGREES + " SELECT node_id, in_degree, out_degree FROM %s" % GM_NODE_DEGREES)
-  db_conn.commit()
-  print "begin kcore iteration..."
-  while(i<=5):
-    cur.execute ("INSERT INTO %s" % REMOVED_NODE_TABLE +
-                  " SELECT node_id FROM %s" % TEMP_GM_NODE_DEGREES + " WHERE in_degree < %s" % i)
-    # remove degree < i nodes and associated edges in GM_TABLE and GM_TABLE_UNDIRECT
-    gm_sql_table_drop_create(db_conn, TEMP_GM_TABLE, "src_id integer, dst_id integer, weight real default 1")
-    gm_sql_table_drop_create(db_conn, TEMP_GM_TABLE_UNDIRECT, "src_id integer, dst_id integer, weight real default 1")
-    gm_sql_table_drop_create(db_conn, TEMP_GM_NODES, "node_id integer")
-    cur.execute ("INSERT INTO %s" % TEMP_GM_NODES +
-                             " SELECT DISTINCT(src_id) FROM %s" % GM_TABLE_UNDIRECT + " WHERE src_id NOT IN (SELECT node_id FROM %s" % REMOVED_NODE_TABLE +" WHERE node_id IS NOT NULL) AND dst_id NOT IN (SELECT node_id FROM %s" % REMOVED_NODE_TABLE +" WHERE node_id IS NOT NULL)")
-    cur.execute ("INSERT INTO %s" % TEMP_GM_TABLE + " SELECT src_id, dst_id, weight FROM %s" % GM_TABLE + " WHERE src_id NOT IN (SELECT node_id FROM %s" % REMOVED_NODE_TABLE + " WHERE node_id IS NOT NULL) AND dst_id NOT IN (SELECT node_id FROM %s" % REMOVED_NODE_TABLE +" WHERE node_id IS NOT NULL)")
-    cur.execute ("INSERT INTO %s" % TEMP_GM_TABLE_UNDIRECT + " SELECT src_id, dst_id, weight FROM %s" % GM_TABLE_UNDIRECT + " WHERE src_id NOT IN (SELECT node_id FROM %s" % REMOVED_NODE_TABLE +" WHERE node_id IS NOT NULL) AND dst_id NOT IN (SELECT node_id FROM %s" % REMOVED_NODE_TABLE +" WHERE node_id IS NOT NULL)")
-    db_conn.commit()
-
-    # Recomputing node degrees..."
+def kcore (args, indexflag):
+    starttime = time.time()
+    global db_conn
+    global GM_TABLE
+    #Default Table names
+    TEMP_GM_TABLE = "TEMP_GM_TABLE"
+    TEMP_GM_TABLE_UNDIRECT = "TEMP_GM_TABLE_UNDIRECTED"
+    TEMP_GM_NODES = "TEMP_GM_NODES"
+    TEMP_GM_NODE_DEGREES = "TEMP_GM_NODE_DEGREES"
+    REMOVED_NODE_TABLE = "REMOVED_NODE_TABLE"
+    TEMP_GM_CON_COMP = "TEMP_GM_CON_COMP"
+    temp_table = "GM_CC_TEMP"
+    TEMP_GM_CON_COMP_2 = "TEMP_GM_CON_COMP_2"
+    cur = db_conn.cursor()
+    k = 5
+    i = 2
+    # create REMOVED_NODE_TABLE to record deleted node_id
+    gm_sql_table_drop_create(db_conn, REMOVED_NODE_TABLE, "node_id integer")
+    # create TEMP_GM_NODE_DEGREES
     gm_sql_table_drop_create(db_conn, TEMP_GM_NODE_DEGREES, "node_id integer, \
-                             in_degree integer, out_degree integer")
-    cur.execute ("INSERT INTO %s" % TEMP_GM_NODE_DEGREES +
-                             " SELECT node_id, SUM(in_degree) \"in_degree\", SUM(out_degree) \"out_degree\" FROM " +
-                             " (SELECT dst_id \"node_id\", count(*) \"in_degree\", \
-                               0 \"out_degree\" FROM %s" % TEMP_GM_TABLE +
-                             " GROUP BY dst_id" +
-                             " UNION ALL" +
-                             " SELECT src_id \"node_id\", 0 \"in_degree\", \
-                               count(*) \"out_degree\" FROM %s" % TEMP_GM_TABLE +
-                             " GROUP BY src_id) \"TAB\" " +
-                             " GROUP BY node_id")
+                           in_degree integer, out_degree integer")
+    gm_sql_table_drop_create(db_conn, TEMP_GM_TABLE, "src_id integer, dst_id integer, weight real default 1")
+    cur.execute ("INSERT INTO %s" % TEMP_GM_TABLE + " SELECT src_id, dst_id, weight FROM %s" % GM_TABLE_UNDIRECT)
+    cur.execute ("INSERT INTO %s" % TEMP_GM_NODE_DEGREES + " SELECT node_id, in_degree, out_degree FROM %s" % GM_NODE_DEGREES)
+
+    time1 = time.time()
+    if(indexflag[0]=='1'):
+      cur.execute ("CREATE INDEX GM_TABLE_UNDIRECT_INDEX_KCORE_1 ON GM_TABLE_UNDIRECTED (src_id)")
+    time2 = time.time()
+    print "index:", (time2-time1)*1000.0
+
+    time1 = time.time()
+    if(indexflag[1]=='1'):
+      cur.execute ("CREATE INDEX GM_TABLE_UNDIRECT_INDEX_KCORE_2 ON GM_TABLE_UNDIRECTED (dst_id)")
+    time2 = time.time()
+    print "index:", (time2-time1)*1000.0
+
     db_conn.commit()
-    # print "iteration when i=", i
-    # gm_sql_print_table(db_conn, REMOVED_NODE_TABLE)
-    # print "TEMP_GM_NODES"
-    # gm_sql_print_table(db_conn, TEMP_GM_NODES)
-    # print "TEMP_GM_TABLE"
-    # gm_sql_print_table(db_conn, TEMP_GM_TABLE)
-    # print "TEMP_GM_NODE_DEGREES"
-    # gm_sql_print_table(db_conn, TEMP_GM_NODE_DEGREES)
-    i = i+1
+    print "begin kcore iteration..."
+    while(i<=5):
+        cur.execute ("INSERT INTO %s" % REMOVED_NODE_TABLE +" SELECT node_id FROM %s" % TEMP_GM_NODE_DEGREES + " WHERE in_degree < %s" % i)
+        # remove degree < i nodes and associated edges in GM_TABLE and GM_TABLE_UNDIRECT
+        gm_sql_table_drop_create(db_conn, TEMP_GM_TABLE, "src_id integer, dst_id integer, weight real default 1")
+        gm_sql_table_drop_create(db_conn, TEMP_GM_TABLE_UNDIRECT, "src_id integer, dst_id integer, weight real default 1")
+        gm_sql_table_drop_create(db_conn, TEMP_GM_NODES, "node_id integer")
+        cur.execute ("INSERT INTO %s" % TEMP_GM_NODES +
+                                 " SELECT DISTINCT(src_id) FROM %s" % GM_TABLE_UNDIRECT + " WHERE src_id NOT IN (SELECT node_id FROM %s" % REMOVED_NODE_TABLE +" WHERE node_id IS NOT NULL) AND dst_id NOT IN (SELECT node_id FROM %s" % REMOVED_NODE_TABLE +" WHERE node_id IS NOT NULL)")
+        cur.execute ("INSERT INTO %s" % TEMP_GM_TABLE + " SELECT src_id, dst_id, weight FROM %s" % GM_TABLE + " WHERE src_id NOT IN (SELECT node_id FROM %s" % REMOVED_NODE_TABLE + " WHERE node_id IS NOT NULL) AND dst_id NOT IN (SELECT node_id FROM %s" % REMOVED_NODE_TABLE +" WHERE node_id IS NOT NULL)")
+        cur.execute ("INSERT INTO %s" % TEMP_GM_TABLE_UNDIRECT + " SELECT src_id, dst_id, weight FROM %s" % GM_TABLE_UNDIRECT + " WHERE src_id NOT IN (SELECT node_id FROM %s" % REMOVED_NODE_TABLE +" WHERE node_id IS NOT NULL) AND dst_id NOT IN (SELECT node_id FROM %s" % REMOVED_NODE_TABLE +" WHERE node_id IS NOT NULL)")
+        db_conn.commit()
 
-  # gm_sql_print_table(db_conn, TEMP_GM_NODES)
-  # print "finish kcore iteration, now calculate connected components"
-  # gm_sql_print_table(db_conn, TEMP_GM_NODE_DEGREES)
+        # Recomputing node degrees..."
+        gm_sql_table_drop_create(db_conn, TEMP_GM_NODE_DEGREES, "node_id integer, \
+                                 in_degree integer, out_degree integer")
+        cur.execute ("INSERT INTO %s" % TEMP_GM_NODE_DEGREES +
+                                 " SELECT node_id, SUM(in_degree) \"in_degree\", SUM(out_degree) \"out_degree\" FROM " +
+                                 " (SELECT dst_id \"node_id\", count(*) \"in_degree\", \
+                                   0 \"out_degree\" FROM %s" % TEMP_GM_TABLE +
+                                 " GROUP BY dst_id" +
+                                 " UNION ALL" +
+                                 " SELECT src_id \"node_id\", 0 \"in_degree\", \
+                                   count(*) \"out_degree\" FROM %s" % TEMP_GM_TABLE +
+                                 " GROUP BY src_id) \"TAB\" " +
+                                 " GROUP BY node_id")
+        db_conn.commit()
+        i = i+1
 
+
+  # ############################################################################################################
+  # in kcore, CC part, all index
   # Connected components
   # Create CC table and initialize component id to node id
 
-  gm_sql_create_and_insert(db_conn, TEMP_GM_CON_COMP, GM_NODES, \
+    gm_sql_create_and_insert(db_conn, TEMP_GM_CON_COMP, GM_NODES, \
                            "node_id integer, component_id integer", \
                            "node_id, component_id", "node_id, node_id")
-  # gm_sql_print_table(db_conn, TEMP_GM_TABLE_UNDIRECT)
-  while True:
-      gm_sql_table_drop_create(db_conn, temp_table,"node_id integer, component_id integer")
-      # Set component id as the min{component ids of neighbours, node's componet id}
-      cur.execute("INSERT INTO %s " % temp_table +
+
+
+    time1 = time.time()
+    if(indexflag[2]=='1'):
+        cur.execute ("CREATE INDEX TEMP_GM_TABLE_UNDIRECT_INDEX_KCORE_CC_1 ON TEMP_GM_TABLE_UNDIRECTED (src_id)")
+    time2 = time.time()
+    print "index:", (time2-time1)*1000.0
+
+    time1 = time.time()
+    if(indexflag[3]=='1'):
+        cur.execute ("CREATE INDEX TEMP_GM_TABLE_UNDIRECT_INDEX_KCORE_CC_2 ON TEMP_GM_TABLE_UNDIRECTED (dst_id)")
+    time2 = time.time()
+    print "index:", (time2-time1)*1000.0
+
+    while True:
+        gm_sql_table_drop_create(db_conn, temp_table,"node_id integer, component_id integer")
+        # Set component id as the min{component ids of neighbours, node's componet id}
+        cur.execute("INSERT INTO %s " % temp_table +
                           " SELECT node_id, MIN(component_id) \"component_id\" FROM (" +
                               " SELECT src_id \"node_id\", MIN(component_id) \"component_id\" FROM %s, %s" % (TEMP_GM_TABLE_UNDIRECT,TEMP_GM_CON_COMP) +
                               " WHERE dst_id = node_id GROUP BY src_id" +
                               " UNION" +
                               " SELECT * FROM %s" %  TEMP_GM_CON_COMP +
                           " ) \"T\" GROUP BY node_id")
-      db_conn.commit()
-      diff = gm_sql_vect_diff(db_conn, TEMP_GM_CON_COMP, temp_table, "node_id", "node_id", "component_id", "component_id")
-      # Copy the new component ids to the component id table
-      gm_sql_create_and_insert(db_conn, TEMP_GM_CON_COMP, temp_table, \
+
+        time1 = time.time()
+        if(indexflag[2]=='1'):
+          cur.execute ("CREATE INDEX TEMP_GM_CON_COMP_INDEX_KCORE_CC ON TEMP_GM_CON_COMP (node_id)")
+        time2 = time.time()
+        print "index:", (time2-time1)*1000.0
+        time1 = time.time()
+        if(indexflag[2]=='1'):
+          cur.execute ("CREATE INDEX GM_CC_TEMP_INDEX_KCORE_CC ON GM_CC_TEMP (node_id)")
+        time2 = time.time()
+        print "index:", (time2-time1)*1000.0
+
+        db_conn.commit()
+        diff = gm_sql_vect_diff(db_conn, TEMP_GM_CON_COMP, temp_table, "node_id", "node_id", "component_id", "component_id")
+        # Copy the new component ids to the component id table
+        gm_sql_create_and_insert(db_conn, TEMP_GM_CON_COMP, temp_table, \
                                   "node_id integer, component_id integer", \
                                   "node_id, component_id", "node_id, component_id")
-      print "Error = " + str(diff)
-      # Check whether the component ids has converged
-      if (diff == 0):
+
+        print "Error = " + str(diff)
+        # Check whether the component ids has converged
+        if (diff == 0):
           print "Component IDs has converged"
           break
-  cur.execute ("SELECT count(distinct component_id) FROM %s" % TEMP_GM_CON_COMP)
-  num_components = cur.fetchone()[0]
-  print "Number of Components =", num_components
-  print "Now output decomposition (node_id,component_id) pairs"
-  cur.execute ("SELECT node_id, component_id FROM %s" % TEMP_GM_CON_COMP + " WHERE node_id IN (SELECT node_id FROM %s" % TEMP_GM_NODES + ") ORDER BY component_id")
-  for x in cur:
+    cur.execute ("SELECT count(distinct component_id) FROM %s" % TEMP_GM_CON_COMP)
+    num_components = cur.fetchone()[0]
+    print "Number of Components =", num_components
+    print "Now output decomposition (node_id,component_id) pairs"
+    cur.execute ("SELECT node_id, component_id FROM %s" % TEMP_GM_CON_COMP + " WHERE node_id IN (SELECT node_id FROM %s" % TEMP_GM_NODES + ") ORDER BY component_id")
+    for x in cur:
       print x
-  print "finished kcore, writing to files"
-  gm_sql_table_drop_create(db_conn, TEMP_GM_CON_COMP_2,"node_id integer, component_id integer")
-  cur.execute ("INSERT INTO %s" % TEMP_GM_CON_COMP_2 + "SELECT node_id, component_id FROM %s" % TEMP_GM_CON_COMP + " WHERE node_id IN (SELECT node_id FROM %s" % TEMP_GM_NODES + ") ORDER BY component_id")
-  gm_sql_save_table_to_file(db_conn, TEMP_GM_CON_COMP_2, "node_id, component_id", \
-                                os.path.join(args.dest_dir,"kcore_conncomp.csv"), ",");
-  # Drop temp tables
-  gm_sql_table_drop(db_conn, temp_table)
-  gm_sql_table_drop(db_conn, TEMP_GM_CON_COMP)
-  cur.close()
-  return
+    print "finished kcore, writing to files"
+    # gm_sql_table_drop_create(db_conn, TEMP_GM_CON_COMP_2,"node_id integer, component_id integer")
+    # cur.execute ("INSERT INTO %s" % TEMP_GM_CON_COMP_2 + "SELECT node_id, component_id FROM %s" % TEMP_GM_CON_COMP + " WHERE node_id IN (SELECT node_id FROM %s" % TEMP_GM_NODES + ") ORDER BY component_id")
+    # gm_sql_save_table_to_file(db_conn, TEMP_GM_CON_COMP_2, "node_id, component_id", os.path.join(args.dest_dir,"kcore_conncomp.csv"), ",");
+    # Drop temp tables
+    gm_sql_table_drop(db_conn, temp_table)
+    gm_sql_table_drop(db_conn, TEMP_GM_CON_COMP)
+    cur.close()
+    endtime = time.time()
+    print "whole:", (endtime - starttime) * 1000.0
+    return
 
 #Project Tasks
 
 #Task 1: Degree distribution
 #-----------------------------------------------------------------------------#
-def gm_node_degrees (indexflag):
+def gm_node_degrees ():
     cur = db_conn.cursor()
 
     # Create Table to store node degrees
@@ -205,10 +236,6 @@ def gm_node_degrees (indexflag):
     gm_sql_table_drop_create(db_conn, GM_NODE_DEGREES, "node_id integer, \
                              in_degree integer, out_degree integer")
 
-    if(indexflag[0]=='1'):
-        cur.execute("CREATE INDEX GM_TABLE_INDEX_DST_ID ON %s" % GM_TABLE + "(dst_id)")
-        # cur.execute("CREATE INDEX GM_TABLE_INDEX_DST_ID GM_TABLE(dst_id)")
-        cur.execute("CREATE INDEX GM_TABLE_INDEX_SRC_ID ON %s" % GM_TABLE + "(src_id)")
     cur.execute ("INSERT INTO %s" % GM_NODE_DEGREES +
                              " SELECT node_id, SUM(in_degree) \"in_degree\", SUM(out_degree) \"out_degree\" FROM " +
                              " (SELECT dst_id \"node_id\", count(*) \"in_degree\", \
@@ -226,7 +253,7 @@ def gm_node_degrees (indexflag):
 
 # Degree distribution
 def gm_degree_distribution (undirected, indexflag):
-
+    starttime = time.time()
     cur = db_conn.cursor()
     print "Computing Degree distribution of the nodes..."
 
@@ -234,12 +261,21 @@ def gm_degree_distribution (undirected, indexflag):
     gm_sql_table_drop_create(db_conn, GM_INDEGREE_DISTRIBUTION, "degree integer, count integer")
     gm_sql_table_drop_create(db_conn, GM_OUTDEGREE_DISTRIBUTION, "degree integer, count integer")
 
+    time1 = time.time()
     if(indexflag[0]=='1'):
-        cur.execute("CREATE INDEX GM_DEGREE_DISTRIBUTTION_INDEX_IN_DEGREE ON %s" % GM_NODE_DEGREES + "(in_degree)")
-        cur.execute("CREATE INDEX GM_DEGREE_DISTRIBUTTION_INDEX_OUT_DEGREE ON %s" % GM_NODE_DEGREES + "(out_degree)")
+        cur.execute ("CREATE INDEX in_degree_index ON GM_NODE_DEGREES (in_degree)")
+    time2 = time.time()
+    print "index:", (time2-time1)*1000.0
+
     cur.execute ("INSERT INTO %s" % GM_INDEGREE_DISTRIBUTION +
                             " SELECT in_degree \"degree\", count(*) FROM %s" % (GM_NODE_DEGREES) +
                             " GROUP BY in_degree");
+
+    time1 = time.time()
+    if(indexflag[1]=='1'):
+        cur.execute ("CREATE INDEX out_degree_index ON GM_NODE_DEGREES (out_degree)")
+    time2 = time.time()
+    print "index:", (time2-time1)*1000.0
 
     cur.execute ("INSERT INTO %s" % GM_OUTDEGREE_DISTRIBUTION +
                             " SELECT out_degree \"degree\", count(*) FROM %s" % (GM_NODE_DEGREES) +
@@ -254,14 +290,19 @@ def gm_degree_distribution (undirected, indexflag):
                             " SELECT in_degree+out_degree \"degree\", count(*) FROM %s" % (GM_NODE_DEGREES) +
                             " GROUP BY in_degree+out_degree");
 
+     #cur.execute ("DROP INDEX in_degree_index");
+     #cur.execute ("DROP INDEX out_degree_index");
+
     db_conn.commit()
     cur.close()
+    endtime = time.time()
+    print "whole:", (endtime - starttime)*1000.0
 
 # Task 2: PageRank
 # ------------------------------------------------------------------------- #
-def gm_pagerank (num_nodes, max_iterations = gm_param_pr_max_iter, \
+def gm_pagerank (num_nodes, indexflag, max_iterations = gm_param_pr_max_iter, \
                     stop_threshold = gm_param_pr_thres, damping_factor = gm_param_pr_damping):
-
+    starttime = time.time()
     offset_table = "GM_PR_OFFSET"
     next_table = "GM_PR_NEXT"
     norm_table = "GM_PR_NORM"
@@ -270,6 +311,19 @@ def gm_pagerank (num_nodes, max_iterations = gm_param_pr_max_iter, \
     print "Computing PageRanks..."
 
     gm_sql_table_drop_create(db_conn, norm_table,"src_id integer, dst_id integer, weight double precision")
+
+    time1 = time.time()
+    if(indexflag[0]=='1'):
+        cur.execute ("CREATE INDEX src_id_index ON GM_TABLE (src_id)");
+    time2 = time.time()
+    print "index:", (time2-time1)*1000.0
+
+    time1 = time.time()
+    if(indexflag[1]=='1'):
+        cur.execute ("CREATE INDEX src_id_index ON GM_TABLE USING hash(src_id)");
+    time2 = time.time()
+    print "index:", (time2-time1)*1000.0
+
 
     # Create normalized weighted table
     cur.execute("INSERT INTO %s " % norm_table +
@@ -287,10 +341,47 @@ def gm_pagerank (num_nodes, max_iterations = gm_param_pr_max_iter, \
     gm_sql_create_and_insert(db_conn, offset_table, GM_NODES, \
                              "node_id integer, page_rank double precision default %s" % ((1.0-damping_factor)/num_nodes), \
                              "node_id", "node_id")
+
+    time1 = time.time()
+    if(indexflag[2]=='1'):
+        cur.execute ("CREATE INDEX src_id_index_norm ON GM_PR_NORM (src_id)")
+    time2 = time.time()
+    print "index:", (time2-time1)*1000.0
+
+    time1 = time.time()
+    if(indexflag[3]=='1'):
+        cur.execute ("CREATE INDEX src_id_index_norm ON GM_PR_NORM USING hash(src_id)")
+    time2 = time.time()
+    print "index:", (time2-time1)*1000.0
+
+    time1 = time.time()
+    if(indexflag[4]=='1'):
+        cur.execute ("CREATE INDEX node_id_index_offset ON GM_PR_OFFSET (node_id)")
+    time2 = time.time()
+    print "index:", (time2-time1)*1000.0
+
+    time1 = time.time()
+    if(indexflag[5]=='1'):
+        cur.execute ("CREATE INDEX node_id_index_offset ON GM_PR_OFFSET USING hash (node_id)")
+    time2 = time.time()
+    print "index:", (time2-time1)*1000.0
+
     num_iterations = 0
     while True:
         # Create Table to store the next pageRank
         gm_sql_table_drop_create(db_conn, next_table,"node_id integer, page_rank double precision")
+
+        time1 = time.time()
+        if(indexflag[6]=='1'):
+            cur.execute ("CREATE INDEX node_id_index_pagerank ON GM_PAGERANK (node_id)");
+        time2 = time.time()
+        print "index:", (time2-time1)*1000.0
+
+        time1 = time.time()
+        if(indexflag[7]=='1'):
+            cur.execute ("CREATE INDEX node_id_index_pagerank ON GM_PAGERANK USING hash (node_id)");
+        time2 = time.time()
+        print "index:", (time2-time1)*1000.0
 
         # Compute Next PageRank
         cur.execute ("INSERT INTO %s " % next_table +
@@ -319,16 +410,22 @@ def gm_pagerank (num_nodes, max_iterations = gm_param_pr_max_iter, \
         if (diff<=stop_threshold or num_iterations>=max_iterations):
             break
 
+    #cur.execute ("DROP INDEX src_id_index_norm");
+    #cur.execute ("DROP INDEX node_id_index_offset");
+
     # Drop temp tables
     gm_sql_table_drop(db_conn, offset_table)
     gm_sql_table_drop(db_conn, next_table)
     gm_sql_table_drop(db_conn, norm_table)
 
     cur.close()
+    endtime = time.time()
+    print "whole:", (endtime - starttime)*1000.0
 
 # Task 3: Weakly Connected Components
 #-------------------------------------------------------------#
 def gm_connected_components (num_nodes, indexflag):
+    starttime = time.time()
     temp_table = "GM_CC_TEMP"
     cur = db_conn.cursor()
     print 'Computing Weakly Connected Components...'
@@ -338,13 +435,17 @@ def gm_connected_components (num_nodes, indexflag):
                              "node_id integer, component_id integer", \
                              "node_id, component_id", "node_id, node_id")
 
-
+    time1 = time.time()
     if(indexflag[0]=='1'):
-        cur.execute("CREATE INDEX GM_CONNECTED_COMPONENTS_INDEX_SRC_ID ON %s" % GM_TABLE_UNDIRECT + "(src_id)")
-    while True:
-        gm_sql_table_drop_create(db_conn, temp_table,"node_id integer, component_id integer")
+        cur.execute ("CREATE INDEX GM_TABLE_UNDIRECT_INDEX_CC ON GM_TABLE_UNDIRECTED (src_id)");
+    time2 = time.time()
+    print "index:", (time2-time1)*1000.0
 
+    while True:
+
+        gm_sql_table_drop_create(db_conn, temp_table,"node_id integer, component_id integer")
         # Set component id as the min{component ids of neighbours, node's componet id}
+
         cur.execute("INSERT INTO %s " % temp_table +
                             " SELECT node_id, MIN(component_id) \"component_id\" FROM (" +
                                 " SELECT src_id \"node_id\", MIN(component_id) \"component_id\" FROM %s, %s" % (GM_TABLE_UNDIRECT,GM_CON_COMP) +
@@ -353,6 +454,19 @@ def gm_connected_components (num_nodes, indexflag):
                                 " SELECT * FROM %s" %  GM_CON_COMP +
                             " ) \"T\" GROUP BY node_id")
         db_conn.commit()
+
+        time1 = time.time()
+        if(indexflag[1]=='1'):
+            cur.execute ("CREATE INDEX TEMP_TABLE_INDEX_CC ON %s" % temp_table + " (node_id)");
+        time2 = time.time()
+        print "index:", (time2-time1)*1000.0
+
+        time1 = time.time()
+        if(indexflag[2]=='1'):
+            cur.execute ("CREATE INDEX GM_CON_COMP_CC ON %s " % GM_CON_COMP + " (node_id)");
+
+        time2 = time.time()
+        print "index:", (time2-time1)*1000.0
 
         diff = gm_sql_vect_diff(db_conn, GM_CON_COMP, temp_table, "node_id", "node_id", "component_id", "component_id")
 
@@ -375,11 +489,13 @@ def gm_connected_components (num_nodes, indexflag):
 
     # Drop temp tables
     gm_sql_table_drop(db_conn, temp_table)
+    endtime = time.time()
+    print "whole:", (endtime - starttime)*1000.0
 
 # Task 4: Radius of every node
 #-------------------------------------------------------------#
-def gm_all_radius (num_nodes, max_iter = gm_param_radius_max_iter):
-
+def gm_all_radius (num_nodes, indexflag, max_iter = gm_param_radius_max_iter):
+    starttime = time.time()
     hop_table = "GM_RD_HOP"
     max_hop_ngh = "GM_RD_MAX_HOP_NGH"
 
@@ -391,12 +507,38 @@ def gm_all_radius (num_nodes, max_iter = gm_param_radius_max_iter):
                              "node_id integer, hash integer", \
                              "node_id, hash", "node_id, (((node_id%%%s+1)#(node_id%%%s))+1)/2" % (num_nodes, num_nodes))
 
+
+    time1 = time.time()
+    if(indexflag[0]=='1'):
+        cur.execute ("CREATE INDEX src_id_index_undirect ON GM_TABLE_UNDIRECTED (src_id)")
+    time2 = time.time()
+    print "index:", (time2-time1)*1000.0
+
+    time1 = time.time()
+    if(indexflag[1]=='1'):
+        cur.execute ("CREATE INDEX src_id_index_undirect ON GM_TABLE_UNDIRECTED USING hash (src_id)")
+    time2 = time.time()
+    print "index:", (time2-time1)*1000.0
+
     for cur_hop in range(1,max_iter+1):
         print "Hop number : " + str(cur_hop)
 
         # create ith hop table
         cur_hop_table = hop_table+str(cur_hop)
         prev_hop_table = hop_table+str(cur_hop-1)
+
+        time1 = time.time()
+        if(indexflag[2]=='1'):
+            cur.execute ("CREATE INDEX node_id_index_%s " % prev_hop_table + " ON %s" % prev_hop_table + " (node_id)" )
+        time2 = time.time()
+        print "index:", (time2-time1)*1000.0
+
+        time1 = time.time()
+        if(indexflag[3]=='1'):
+            cur.execute ("CREATE INDEX node_id_index_%s " % prev_hop_table + " ON %s" % prev_hop_table + " USING hash (node_id)" )
+        time2 = time.time()
+        print "index:", (time2-time1)*1000.0
+
         gm_sql_table_drop_create(db_conn, cur_hop_table,"node_id integer, hash integer")
         cur.execute("INSERT INTO %s " % cur_hop_table +
                             " SELECT node_id, bit_or(hash) FROM ( " +
@@ -421,6 +563,11 @@ def gm_all_radius (num_nodes, max_iter = gm_param_radius_max_iter):
                              "id, value", "node_id, %s" % (nghbourhd_func))
 
 
+    time1 = time.time()
+    if(indexflag[4]=='1'):
+        cur.execute ("CREATE INDEX id_index_max_hop_ngh ON GM_RD_MAX_HOP_NGH (id)")
+    time2 = time.time()
+    print "index:", (time2-time1)*1000.0
 
     gm_sql_table_drop_create(db_conn, GM_RADIUS,"node_id integer, radius integer")
 
@@ -448,7 +595,8 @@ def gm_all_radius (num_nodes, max_iter = gm_param_radius_max_iter):
 
 
     cur.close()
-
+    endtime = time.time()
+    print "whole:", (endtime - starttime) * 1000.0
 # Task 5: Eigen values
 # ------------------------------------------------------------------------- #
 # The adjacency matrix should be symmetric
@@ -516,8 +664,8 @@ def gm_eigen_QR_decompose(T, n, Q, R):
 
 
 
-def gm_eigen_QR_iterate(T, n, EVal, EVec, steps, err):
-
+def gm_eigen_QR_iterate(T, n, EVal, EVec, steps, err, indexflag):
+    starttime = time.time()
     Q = "GM_QR_Q"
     R = "GM_QR_R"
     temp_table = "GM_QR_TEMP"
@@ -563,6 +711,18 @@ def gm_eigen_QR_iterate(T, n, EVal, EVec, steps, err):
             cur.execute("INSERT INTO %s" % (EVec) + " SELECT * FROM %s" % (temp_table))
             db_conn.commit()
 
+            time1 = time.time()
+            if(indexflag[0]=='1'):
+                cur.execute("CREATE INDEX row_id_index_%s" % (EVal) + " ON %s" % (EVal) + " (row_id)")
+            time2 = time.time()
+            print "index:", (time2-time1)*1000.0
+
+            time1 = time.time()
+            if(indexflag[1]=='1'):
+                cur.execute("CREATE INDEX col_id_index_%s" % (EVal) + " ON %s" % (EVal) + " (col_id)")
+            time2 = time.time()
+            print "index:", (time2-time1)*1000.0
+
             cur.execute("SELECT max(abs(value)) FROM %s" % (EVal) + " WHERE row_id <> col_id" )
             cur_err = cur.fetchone()[0]
 
@@ -577,11 +737,12 @@ def gm_eigen_QR_iterate(T, n, EVal, EVec, steps, err):
     gm_sql_table_drop(db_conn, R)
     gm_sql_table_drop(db_conn, temp_table)
     gm_sql_table_drop(db_conn, I)
+    endtime = time.time()
+    print "index:", (endtime - starttime)*1000.0
 
 
-
-def gm_eigen (steps, num_nodes, err1, err2, adj_table=GM_TABLE_UNDIRECT):
-
+def gm_eigen (steps, num_nodes, err1, err2, indexflag, adj_table=GM_TABLE_UNDIRECT):
+    starttime = time.time()
     QR_max_iter = gm_param_qr_max_iter
     QR_stop_threshold = gm_param_qr_thres
 
@@ -605,6 +766,17 @@ def gm_eigen (steps, num_nodes, err1, err2, adj_table=GM_TABLE_UNDIRECT):
                              "id integer, value double precision", \
                              "id, value", "node_id, 0")
 
+    time1 = time.time()
+    if(indexflag[2]=='1'):
+        cur.execute("CREATE INDEX col_id_index_%s" % (basis_vect_0) + " ON %s" % (basis_vect_0) + " (id)")
+    time2 = time.time()
+    print "index:", (time2-time1)*1000.0
+
+    time1 = time.time()
+    if(indexflag[3]=='1'):
+        cur.execute("CREATE INDEX col_id_index_%s" % (basis_vect_1) + " ON %s" % (basis_vect_1) + " (id)")
+    time2 = time.time()
+    print "index:", (time2-time1)*1000.0
     # Create table to store the basis vectors
     gm_sql_table_drop_create(db_conn, basis,"row_id integer, col_id integer, value double precision")
 
@@ -652,7 +824,7 @@ def gm_eigen (steps, num_nodes, err1, err2, adj_table=GM_TABLE_UNDIRECT):
         db_conn.commit()
 
         if i>1:
-            gm_eigen_QR_iterate(tridiag_table, i, diag_table, eigvec_table, QR_max_iter, QR_stop_threshold)
+            gm_eigen_QR_iterate(tridiag_table, i, diag_table, eigvec_table, QR_max_iter, QR_stop_threshold, indexflag)
 
             for j in range(1,i+1):
                 cur.execute("SELECT abs(value) FROM %s" % (eigvec_table) +
@@ -707,7 +879,7 @@ def gm_eigen (steps, num_nodes, err1, err2, adj_table=GM_TABLE_UNDIRECT):
         beta_0 = beta_1
 
     # Get the eigen values and eigen vectors
-    gm_eigen_QR_iterate(tridiag_table, i, diag_table, eigvec_table, QR_max_iter, QR_stop_threshold)
+    gm_eigen_QR_iterate(tridiag_table, i, diag_table, eigvec_table, QR_max_iter, QR_stop_threshold, indexflag)
 
     gm_sql_table_drop_create(db_conn, GM_EIG_VALUES,"id integer, value double precision")
 
@@ -758,13 +930,13 @@ def gm_eigen (steps, num_nodes, err1, err2, adj_table=GM_TABLE_UNDIRECT):
     gm_sql_table_drop(db_conn, tridiag_table)
     gm_sql_table_drop(db_conn, diag_table)
     gm_sql_table_drop(db_conn, eigvec_table)
-
+    endtime = time.time()
+    print "whole:", (endtime - starttime) * 1000.0
 
 # Task 6: Fast Belief Propagation
 # ------------------------------------------------------------------------- #
-def gm_belief_propagation(belief_file, delim, undirected, \
-                max_iterations = gm_param_bp_max_iter, stop_threshold = gm_param_bp_thres):
-
+def gm_belief_propagation(belief_file, delim, undirected, indexflag, max_iterations = gm_param_bp_max_iter, stop_threshold = gm_param_bp_thres):
+    starttime = time.time()
     next_table = "GM_BP_NEXT"
     print "Computing belief propagation..."
 
@@ -797,6 +969,55 @@ def gm_belief_propagation(belief_file, delim, undirected, \
     gm_sql_create_and_insert(db_conn, GM_BELIEF, GM_BELIEF_PRIOR, \
                              "node_id integer, belief double precision", \
                              "node_id, belief", "node_id, belief")
+
+    time1 = time.time()
+    if(indexflag[0]=='1'):
+        cur.execute("CREATE INDEX node_id_index_belief_prior ON GM_BELIEF_PRIOR (node_id)");
+    time2 = time.time()
+    print "index:", (time2-time1)*1000.0
+
+    time1 = time.time()
+    if(indexflag[1]=='1'):
+        cur.execute("CREATE INDEX src_id_index_undirect ON GM_TABLE_UNDIRECTED (src_id)");
+    time2 = time.time()
+    print "index:", (time2-time1)*1000.0
+
+    time1 = time.time()
+    if(indexflag[2]=='1'):
+        cur.execute("CREATE INDEX node_id_index_node_degree ON GM_NODE_DEGREES (node_id)");
+    time2 = time.time()
+    print "index:", (time2-time1)*1000.0
+
+    time1 = time.time()
+    if(indexflag[3]=='1'):
+        cur.execute("CREATE INDEX node_id_index_belief ON GM_BELIEF (node_id)");
+    time2 = time.time()
+    print "index:", (time2-time1)*1000.0
+
+
+    time1 = time.time()
+    if(indexflag[4]=='1'):
+        cur.execute("CREATE INDEX node_id_index_belief_prior ON GM_BELIEF_PRIOR USING hash (node_id)");
+    time2 = time.time()
+    print "index:", (time2-time1)*1000.0
+
+    time1 = time.time()
+    if(indexflag[5]=='1'):
+        cur.execute("CREATE INDEX src_id_index_undirect ON GM_TABLE_UNDIRECTED USING hash (src_id)");
+    time2 = time.time()
+    print "index:", (time2-time1)*1000.0
+
+    time1 = time.time()
+    if(indexflag[6]=='1'):
+        cur.execute("CREATE INDEX node_id_index_node_degree ON GM_NODE_DEGREES USING hash (node_id)");
+    time2 = time.time()
+    print "index:", (time2-time1)*1000.0
+
+    time1 = time.time()
+    if(indexflag[7]=='1'):
+        cur.execute("CREATE INDEX node_id_index_belief ON GM_BELIEF USING hash (node_id)");
+    time2 = time.time()
+    print "index:", (time2-time1)*1000.0
 
     num_iterations = 0
     while True:
@@ -837,7 +1058,8 @@ def gm_belief_propagation(belief_file, delim, undirected, \
     gm_sql_table_drop(db_conn, next_table)
 
     cur.close()
-
+    endtime = time.time()
+    print "whole:", endtime - starttime
 
 
 # Task 7: Triangle counting
@@ -980,42 +1202,48 @@ def main():
         cur.execute("SELECT count(*) from %s" % GM_NODES)
         num_nodes = cur.fetchone()[0]
 
-        gm_node_degrees("0")
-        # gm_sql_print_table(db_conn, GM_NODE_DEGREES)
-        # gm_sql_print_table(db_conn, GM_NODE_DEGREES)
+        gm_node_degrees()
 
-        cur.execute("CREATE INDEX GM_DEGREE_DISTRIBUTTION_INDEX_IN_DEGREE ON %s" % GM_NODE_DEGREES + "(in_degree)")
-        cur.execute("CREATE INDEX GM_DEGREE_DISTRIBUTTION_INDEX_OUT_DEGREE ON %s" % GM_NODE_DEGREES + "(out_degree)")
-        # # Tasks
+        # Tasks
 
-        gm_degree_distribution(args.undirected, "0")                 # Degree distribution
+        # CREATE INDEX in_degree_index ON GM_NODE_DEGREES (in_degree)
+        # CREATE INDEX out_degree_index ON GM_NODE_DEGREES (out_degree)
+        # gm_degree_distribution(args.undirected,'10')                 # Degree distribution
 
-        time1 = time.time()
-        for i in range(1):
-            gm_connected_components(num_nodes,"0")                      # Connected components
-        time2 = time.time()
-        print (time2-time1)*1000.0
+        kcore(args,'1000')
 
-        cur.execute("CREATE INDEX GM_CONNECTED_COMPONENTS_INDEX_SRC_ID ON %s" % GM_TABLE_UNDIRECT + "(src_id)")
-        time1 = time.time()
-        for i in range(1):
-            gm_connected_components(num_nodes,"0")                      # Connected components
-        time2 = time.time()
-        print (time2-time1)*1000.0
+        # CREATE INDEX src_id_index ON GM_TABLE (src_id) ///hash
+        # CREATE INDEX src_id_index_norm ON norm_table (src_id) ///hash
+        # CREATE INDEX node_id_index_offset ON offset_table (node_id) ///hash
+        # CREATE INDEX CONCURRENTLY node_id_index_pagerank ON GM_PAGERANK (node_id) ///hash
+        # gm_pagerank(num_nodes,'10101010')                                  # Pagerank
 
-        # kcore(args)
-        # gm_pagerank(num_nodes)                                  # Pagerank
-        # gm_eigen(gm_param_eig_max_iter, num_nodes, gm_param_eig_thres1, gm_param_eig_thres2)
-        # gm_all_radius(num_nodes)
+
+        # CREATE INDEX GM_TABLE_UNDIRECT_INDEX_CC ON GM_TABLE_UNDIRECTED (node_id)
+        # CREATE INDEX TEMP_TABLE_INDEX_CC ON GM_CC_TEMP (node_id)
+        # CREATE INDEX GM_TABLE_UNDIRECT_INDEX_CC ON GM_TABLE_UNDIRECTED (node_id)
+        # gm_connected_components(num_nodes, '111')                      # Connected components
+
+        # CREATE INDEX row_id_index_%s" % (EVal) + " ON %s" % (EVal) + " (row_id)
+        # CREATE INDEX col_id_index_%s" % (EVal) + " ON %s" % (EVal) + " (col_id)
+        # CREATE INDEX col_id_index_%s" % (basis_vect_0) + " ON %s" % (basis_vect_0) + " (id)
+        # CREATE INDEX col_id_index_%s" % (basis_vect_1) + " ON %s" % (basis_vect_1) + " (id)
+        # gm_eigen(gm_param_eig_max_iter, num_nodes, gm_param_eig_thres1, gm_param_eig_thres2,'0011')
+
+        # CREATE INDEX src_id_index_undirect ON GM_TABLE_UNDIRECT (src_id) ///hash
+        # CREATE INDEX node_id_index_%s " % prev_hop_table + " ON prev_hop_table (node_id) ///hash
+        # CREATE INDEX id_index_max_hop_ngh ON max_hop_ngh (id)
+        # gm_all_radius(num_nodes,'00001')
+
         # if (args.belief_file):
-        #     gm_belief_propagation(args.belief_file, args.delimiter, args.undirected)
-        #
-        #
+        #     gm_belief_propagation(args.belief_file, args.delimiter, args.undirected, '11111111')
+
+
         # gm_eigen_triangle_count()
         #gm_naive_triangle_count()
 
         # Save tables to disk
-        gm_save_tables(args.dest_dir, args.belief_file)
+        # gm_save_tables(args.dest_dir, args.belief_file)
         #gm_anomaly_detection()
 
         gm_db_bubye(db_conn)
