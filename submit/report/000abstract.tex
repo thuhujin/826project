@@ -1,0 +1,6 @@
+In this project, we investigated the possibility of using only SQL to do graph manipulations
+on {\em graphMiner}. 
+{\em graphMiner} contains generic methods for RDBMS manipulations and some graph mining algorithms such as PageRank, Degree Distribution, Weak Connected Components, etc. Many useful properties of graphs can be found using these methods. {\em graphMiner} is based on Python, Postgres Database and SQL. Python provides basic control and logic as well as file operations, while all the important calculations are done through SQL on Postgres Database. 
+We also implemented kcore algorithm within the framework, which gives useful information of the importance of nodes in the graph.
+We created unit tests on kcore and other algorithms in the system to test their functionality and correctness as well as to gain better understanding of these methods. 
+For real world testing, we also ran kcore and other algorithms in the framework on 20 realworld datasets. We found some interesting properties of these datasets and explained them with the findings from the results of these graph mining algorithms.

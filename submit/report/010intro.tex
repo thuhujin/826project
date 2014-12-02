@@ -1,0 +1,23 @@
+% {\em
+% \bit
+% \item
+% what is the problem
+% \item
+% what are the applications
+% \eit
+% }
+{\small \em Specify the problem; Give the motivation; 
+List your main contributions}
+
+The problem we are trying to solve is: Given a graph of source-destination pairs on disk, we try to use only SQL to implement basic matrix and vector operations, which make it possible to handle more complex graph manipulations. We will then be able to implement algorithms like PageRank and Degree distribution without the need of an additional language.
+
+The motivation is that we can use only SQL and do not need to depend on other languages. With SQL we can enjoy the benefits of various features of databases and become more effcient in implementing and testing some of the algorithms without the worries like data structure, memory optimization, file IO, etc.
+
+Doing graph mining with SQL is an important method for all scales, research or industry use, as database provides easier interface to scale and deploy. And graph manipulation and mining has many real world applications and is a very important topic. Thus a convenient way of implementing graph manipulation algorithms are highly desired.
+
+The contributions of this project are the following:
+\bit
+\item Our implemented {\em K-core Decomposition} is fast and uses only SQL to do the calculations. Python only works as 
+some basic loop control and input output format handling.
+\item We tested various graph handling algorithm on unit tests and some real world datasets.
+\eit
