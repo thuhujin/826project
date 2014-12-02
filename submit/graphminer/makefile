@@ -109,6 +109,11 @@ unit:
 	rm -rf dataset3.output.txt
 	rm -rf dataset4.output.txt
 	rm -rf dataset5.output.txt
+report:
+	cd ../report/
+	pwd
+	make spotless
+	make
 install:
 	sudo apt-get install python-psycopg2
 

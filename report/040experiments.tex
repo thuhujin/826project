@@ -340,8 +340,8 @@ Table of K-core Algorithm Result for 20 Datasets
 
 Eigenvalues Experiment
 
-We performed eigenvalue calculation on the adjacency matrix of undirected graphs as directed graphs' adjacency matrix is not symmetric and eigenvalues of such graphs can be complex numbers. Eigenvalue analysis is fundamental in terms of the spectral properties of graphs. It can also be used to find approximations to graph measures such as triangle counts.  The algorithms implemented in the {\em graphMiner} framework that we used to do the experiment are Lanczos-SO and QR algorithms.
+We performed eigenvalue calculation on the adjacency matrix of undirected graphs as directed graphs' adjacency matrix is not symmetric and eigenvalues of such graphs can be complex numbers. Eigenvalue analysis is fundamental in terms of the spectral properties of graphs. It can also be used to find approximations to graph measures such as triangle counts.  The algorithms implemented in the {\em graphMiner} framework that we used to do the experiments are Lanczos-SO and QR algorithms.
 
-
+We plotted comparisons of eigen vectors for certain two of top three eigenvalues. Some datasets such as \textbf{soc-Youtube, Euall} show clear "spoke" like features. Datasets such as \textbf{Gnutella31, bio-protein} have no clear "spoke" features. In fact, if we only plot the very top nodes with the largest eigenvalues, the plots will show clearer spokes, for example, if we use top 100 nodes in the datasets with largest eigenvalues. The plots we have used are called EE-plots, showing the values of nodes in the $i_th$ eigenvector vs. in the $j_th$ eigenvector. Notice the clear ‘spokes’ in top eigenvectors signify the existence of a strongly related group of nodes in near-cliques or bi-cliques
 
 
