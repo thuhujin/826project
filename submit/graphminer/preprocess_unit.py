@@ -17,7 +17,5 @@ def main():
         outputfile.write(src_id+", "+dst_id+"\n")
     inputfile.close()
     outputfile.close()
-    os.system("python gm_main.py --file `pwd`/" + outputfilename +
-    " --dest_dir `pwd`/output --belief_file `pwd`/priorsbelief.txt --unweighted --undirected")
-    os.system("cp -rf `pwd`/output `pwd`/" + outputfilename[:-4])
+    os.system("python gm_main.py --file `pwd`/" + outputfilename + " --dest_dir `pwd`/output" + inputfilename[:-3] + " --belief_file `pwd`/priorsbelief.txt --unweighted --undirected")
 main()

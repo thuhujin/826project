@@ -1,0 +1,27 @@
+\begin{center}
+Table of K-core Algorithm Result for 20 Datasets
+\begin{tabular}{ |c|c|c| }
+ \hline
+ Dataset & Number of Nodes & Number of Connected Components \\
+  as-Caida & 1436 & 1 \\
+  as-skitter & 9090 & 159 \\
+  bio-protein & 57 & 1 \\
+  ca-AstroPh & 12574 & 8 \\
+  cit-Cora & 384 & 13 \\
+  cit-HepPh & 8393 & 3 \\
+  cit-HepTh & 21768 & 2 \\
+  com-amazon & 19029 & 2090 \\
+  com-dblp & 23194 & 764 \\
+  email-Enron & 21577 & 180 \\
+  p2p-Gnutella31 & 88 & 7 \\
+  soc-digg & 1066 & 2 \\
+  soc-flickr & 0 & 0 \\
+  soc-hamsterster & 1103 & 1 \\
+  soc-pokec & 0 & 0 \\
+  soc-Slashdot0811 & 20577 & 2 \\
+  soc-Youtube & 277 & 4 \\
+  soft-jdkdependency & 84 & 1 \\
+  text-spanishbook & 1350 & 1 \\
+ \hline
+\end{tabular}
+\end{center}

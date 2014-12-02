@@ -1,9 +1,9 @@
 
 We implemented kcores method
-and tested other algorithms that are already implemented in the system with unit tests and other datasets from SNAP.
+and tested other algorithms that are already implemented in the system with unit tests and 20 realworld datasets described in the appendix.
 
-Figures below give the degree distribution and pagerank result of two dataset from SNAP. We can find that the degree distribution and pagerank results are consistent with the power law as nodes or pages with higher degree or rank have a small number while nodes or pages with lower degree or rank have a large number.
-You can also find the detailed results in the output folder, which contains csv files for the results of belief propagation, connected components, node degrees, degree distribution, eigen values, k-core connected components, pagerank results, radius, etc. 
+Figures below give the degree distribution and pagerank result of 20 datasets. We can find that the degree distribution and pagerank results are consistent with the power law as nodes or pages with higher degree or rank have a small number while nodes or pages with lower degree or rank have a large number.
+You can also find the detailed results in the output folder, which contains csv files for the results of belief propagation, connected components, node degrees, degree distribution, eigen values, k-core connected components, pagerank results, radius, etc. More detailed analysis and anomaly discussion are discussed below.
 
 
 \begin{figure}[H]
@@ -298,3 +298,50 @@ The following are the results of the degree distribution and pagerank results fo
 \caption{Result on PageRank Algorithm and Degree Distribution}
 \end{center}
 \end{figure}
+
+
+We also did more comprehensive experiments on the 20 datasets to test the functionality of algorithms in the framework and the K-core algorithm we implemented.
+Different datasets show different properties when graph mining algorithms are performed on them. We used K = 5 in the experiment as stated in the requirement of the project.
+
+We can find in the table below that some datasets such as \textbf{as-Caida, Cit-HepPh, ca-AstroPh, cit-HepTh, soc-digg, soc-hamsterster, soc-Slashdot0811, text-spanishbook} have relatively big number of nodes but only one or a few connected components. Other datasets such as \textbf{as-skitter, com-amazon, com-dblp, email-Enron} have big number of nodes and relatively big number of connected components. One anomaly type is \textbf{soc-pokec, soc-flickr} in which both number of nodes and number of connected components equal 0. That suggests that no nodes have 5 cores requirement in the dataset. And the small number of connected components suggests that most of the nodes are connected in the graph, only very small number of clusters are formed. The explanation of the formation of connected components is that citations or user relationship form certain groups based on some properties such as interests, regions or languanges.
+For example, DBLP dataset has 764 connected components which suggest that many research field are relatively independent and do not cite other areas of research much, resulting in multiple connected components formed. Also, the number of nodes of DBLP is relatively large compared to the original number of nodes, whici is , so we find infer that inside a research area, people cite each other frequently, which helps produce a large number of nodes.
+For datasets such as \textbf{soc-hamsterster} and \textbf{cit-HepTh} which include citation information in arXiv's High Energy Physics area and friendships between users of the website hamsterster.com, we can find that only one connected components are formed. The reason is that this is a small area of research or common interest and people in this group are well connected and no significant sub-clusters are formed. The large number of nodes compared to the total number of nodes suggest that research work and users in these fields are highly connected and active, or many of the nodes are of high quality.
+
+For datasets such as \textbf{soc-pokec, soc-flickr} and \textbf{p2p-Gnutella} which no or very few connected components are formed and that the number of nodes in the K-core results are small. The explanation for few connected components are similar to the above, which means that relations of points in the dataset are already highly connected and form a group that no further significant sub-clusters form. The small number of nodes means that nodes such as users in digg.com and flickr.com do not have authorities or hubs who have a lot of followers. Instead, users have simple relationship with each other and are generally equal. Then K=5 K-core algorithm will generate very small number of nodes who have the coreness.
+
+\begin{center}
+Table of K-core Algorithm Result for 20 Datasets
+\begin{tabular}{ |c|c|c| }
+ \hline
+ Dataset & Number of Nodes & Number of Connected Components \\
+  as-Caida & 1436 & 1 \\
+  as-skitter & 9090 & 159 \\
+  bio-protein & 57 & 1 \\
+  ca-AstroPh & 12574 & 8 \\
+  cit-Cora & 384 & 13 \\
+  cit-HepPh & 8393 & 3 \\
+  cit-HepTh & 21768 & 2 \\
+  com-amazon & 19029 & 2090 \\
+  com-dblp & 23194 & 764 \\
+  email-Enron & 21577 & 180 \\
+  p2p-Gnutella31 & 88 & 7 \\
+  soc-digg & 1066 & 2 \\
+  soc-flickr & 0 & 0 \\
+  soc-hamsterster & 1103 & 1 \\
+  soc-pokec & 0 & 0 \\
+  soc-Slashdot0811 & 20577 & 2 \\
+  soc-Youtube & 277 & 4 \\
+  soft-jdkdependency & 84 & 1 \\
+  text-spanishbook & 1350 & 1 \\
+ \hline
+\end{tabular}
+\end{center}
+
+
+Eigenvalues Experiment
+
+We performed eigenvalue calculation on the adjacency matrix of undirected graphs as directed graphs' adjacency matrix is not symmetric and eigenvalues of such graphs can be complex numbers. Eigenvalue analysis is fundamental in terms of the spectral properties of graphs. It can also be used to find approximations to graph measures such as triangle counts.  The algorithms implemented in the {\em graphMiner} framework that we used to do the experiment are Lanczos-SO and QR algorithms.
+
+
+
+

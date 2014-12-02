@@ -1,3 +1,52 @@
-We implemented K-core using SQL following the Batagelj and Zaversnik k-core variation. We recursively prune the nodes and edges in the graph with degree less than k to finally arrive at points of degree greater than or equal to k. 
+We implemented K-core in {\em graphMiner} framework with SQL following the Batagelj and Zaversnik k-core variation \cite{Ignacio2005}. We recursively prune the nodes and edges in the graph with degree less than k to finally arrive at points of degree greater than or equal to k. That is, in each iteration, we add nodes whose total indegree do not satisfy the iteration i requirement, i.e. the nodes that have insufficient nodes connected to them in each iteration are deleted.
+After iterations, all the remaining nodes satisfy K-core requirements and we do a Connected Component Analysis to find the clusters.
+
+\subsection{K-core Decomposition: Definition}
+
+A graph G = (V, E), $|V|$ = n vertices and $|E|$ = e edges. Then a K-core is a subgraph of $H =  (C, E | C)$ induced by the set $C \subseteq V if \forall v \in$ C: $degree_H(v) >= k$, and H is the maximum subgraph with this property.
+
+K-cores in the graph can then be calculated by recursively removing all the vertices of degree less than k, until all vertices in the remaining graph have at least degree k.
+
+A vertex i has coreness c if it belongs to the c-core but not to (c + 1)-core. We denote by $c_i$ the coreness of vertex i.
+
+A shell $C_c$ is composed by all the vertices whose coreness is c. The maximum value c such that $C_c$ is not empty is denoted $c_max$. The k-core is thus the union of all shells $C_c$ with c ≥ k.
+
+Each connected set of vertices having the same coreness c is a cluster $Q^c$. Each shell $C_c$ is thus composed by clusters $Q^c_m$ such that $C_c$ = $U_(1≤m≤q_max^c)Q^c_m$, where $q^c_max$ is the number of clusters in $C_c$.
+
+\subsection{K-core Algorithm Description}
+
+\begin{algorithm}
+  \caption{K-core algorithm Description with SQL}
+  \begin{algorithmic}[1]
+    \Require{$UndirectGraph$ and $NodeDegrees$ are input data and prerequisite calculation, $k$ is the number of iterations and the k in K-core algorithm.}
+    \Statex
+    \Function{Kcore}{$UndirectGraph, NodeDegrees, n$}
+      \For{$i \gets 1 \textrm{ to } k$}
+      
+create TempNodeDegrees, TempUndirectGraph table that do not contain nodes in the RemovedNodeTable
+        
+INSERT INTO RemovedNodeTable SELECT nodeId FROM TempNodeDegrees  WHERE inDegree <  i
+      \EndFor
+Do Connected Components Analysis and return distinct componentId in ConnectedComponentGraph
+      \State 
+Save Result to CSV File
+    \EndFunction
+  \end{algorithmic}
+\end{algorithm}
+
+\subsection{K-core Implementation User Mannual}
+
+The minimum command to run the k-core algorithm in the {\em graphMiner} framework is as follows. 
+
+python gm\_main.py <input graph file> <output graph file> <weighted flag> <directed flag>
+
+One concrete example: 
+
+python gm\_main.py --file /your-path/input-graphfile --dest\_dir /your-path/output --unweighted --undirected
+
+More details on the command arguments, please refer to the readme file in the project directory.
+
+Then the graphminer will print out the results for k-core in terminal and output K-core nodes and their corresponding component id in csv file in the output directory you designate.
+More details on the command arguments, please refer to the readme file in the project directory.
 
 
