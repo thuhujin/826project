@@ -11,8 +11,17 @@
 \BOOKMARK [2][-]{subsection.3.2}{K-core Algorithm Description}{section.3}% 11
 \BOOKMARK [2][-]{subsection.3.3}{K-core Implementation User Mannual}{section.3}% 12
 \BOOKMARK [1][-]{section.4}{Experiments}{}% 13
-\BOOKMARK [1][-]{section.5}{Conclusions}{}% 14
-\BOOKMARK [1][-]{appendix.A}{Appendix}{}% 15
-\BOOKMARK [2][-]{subsection.A.1}{Labor Division}{appendix.A}% 16
-\BOOKMARK [2][-]{subsection.A.2}{Acknowledgement}{appendix.A}% 17
-\BOOKMARK [2][-]{subsection.A.3}{Dataset and Origin}{appendix.A}% 18
+\BOOKMARK [2][-]{subsection.4.1}{Phase 1 Experiments}{section.4}% 14
+\BOOKMARK [2][-]{subsection.4.2}{Phase 2 Indexing Experiments}{section.4}% 15
+\BOOKMARK [2][-]{subsection.4.3}{Phase 3 Experiments on Real World Datasets}{section.4}% 16
+\BOOKMARK [3][-]{subsubsection.4.3.1}{K-core}{subsection.4.3}% 17
+\BOOKMARK [3][-]{subsubsection.4.3.2}{Degree Distribution}{subsection.4.3}% 18
+\BOOKMARK [3][-]{subsubsection.4.3.3}{PageRank}{subsection.4.3}% 19
+\BOOKMARK [3][-]{subsubsection.4.3.4}{Connected Components}{subsection.4.3}% 20
+\BOOKMARK [3][-]{subsubsection.4.3.5}{Eigenvalue Experiments}{subsection.4.3}% 21
+\BOOKMARK [3][-]{subsubsection.4.3.6}{Triangle Count}{subsection.4.3}% 22
+\BOOKMARK [1][-]{section.5}{Conclusions}{}% 23
+\BOOKMARK [1][-]{appendix.A}{Appendix}{}% 24
+\BOOKMARK [2][-]{subsection.A.1}{Labor Division}{appendix.A}% 25
+\BOOKMARK [2][-]{subsection.A.2}{Acknowledgement}{appendix.A}% 26
+\BOOKMARK [2][-]{subsection.A.3}{Dataset and Origin}{appendix.A}% 27

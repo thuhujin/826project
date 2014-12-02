@@ -2,6 +2,8 @@
 We implemented kcores method
 and tested other algorithms that are already implemented in the system with unit tests and other datasets from SNAP.
 
+\subsection{Phase 1 Experiments}
+
 Figures below give the degree distribution and pagerank result of two dataset from SNAP. We can find that the degree distribution and pagerank results are consistent with the power law as nodes or pages with higher degree or rank have a small number while nodes or pages with lower degree or rank have a large number.
 You can also find the detailed results in the output folder, which contains csv files for the results of belief propagation, connected components, node degrees, degree distribution, eigen values, k-core connected components, pagerank results, radius, etc. 
 
@@ -91,6 +93,7 @@ algorithm works as it claims to find correct coreness subgraphs.
 \end{center}
 \end{figure}
 
+\subsection{Phase 2 Indexing Experiments}
 
 We build index for algorithms Degree Distribution, K-core, Pagerank, Connected Components, All Radius, Eigen Value Computation on ten datasets:as-skitter.ungraph-75000, ca-AstroPh, cit-HepPh, cit-HepTh, com-amazon.ungraph-75000, com-dblp.ungraph-75000, email-Enron.ungraph, email-EuAll,p2p-Gnutella31, soc-Slashdot0811-75000.
 
@@ -300,6 +303,9 @@ The following are the results of the degree distribution and pagerank results fo
 \end{center}
 \end{figure}
 
+\subsection{Phase 3 Experiments on Real World Datasets}
+
+\subsubsection{K-core}
 We also did more comprehensive experiments on the 20 datasets to test the functionality of algorithms in the framework and the K-core algorithm we implemented.
 Different datasets show different properties when graph mining algorithms are performed on them. We used K = 5 in the experiment as stated in the requirement of the project.
 
@@ -337,7 +343,7 @@ Table of K-core Algorithm Result for 20 Datasets
 \end{tabular}
 \end{center}
 
-
+\subsubsection{Degree Distribution}
 Degree Distribution Experiment
 \begin{figure}[H]
 \begin{center}
@@ -401,10 +407,16 @@ Degree Distribution Experiment
 
 Most of the graphs follow the power law. But for some of the graphs, we see strange patterns. We discuss these below.
 1. Gnutella P2P: The Out-degree distribution is not a power-law pattern and it has sudden jump in the middle of the picture. It means that about 10 machines connects to all of the machines in the p2p cluster. It might be some master file service machines that stores all of the files in the cluster.
+
 2. JDK dependency: The Out-degree distribution is not a power law pattern, and In-degree distribution shows lots of waves at the tail. We inferred that in Java the relationship between classes is not just simple independent as Java has inherit, interface, implementation. For all the classes, the basement class is Object.class. 
+
 3. Flickr Social: From the Out-degree we found about more than 40000 users who has zero out degree, but from In-degree we found that only 1000 users has zero in degree. This shows that in Flickr most users just upload their photos but they don't care others so they don't follow others. And there are some users who follows large amount of users. Most of the users are followed by some maybe administrative account as most of the users have at least one follower.
+
 4. Pokec Social: The same observation with Flickr also takes place on Pokec.
+
 5. Email EuAll: From the in degree we found that there are almost 200000 accounts that receives zero email, which shows a large amount of mistyped, no-existing or spam email addresses.
+
+\subsubsection{PageRank}
 
 PageRank Experiment
 
@@ -430,21 +442,29 @@ PageRank Experiment
 
 We analyzed the pageRank score and the number of nodes with that score.Half of the graphs show the pattern of power-law, but others are not which described as below.
 1. Digg Social: There are several small jump in the descending trend.
+
 2. Flickr Social: the points are more scattered and distributed sparse compared with power-law. As we have mentioned above in degree distribution, due to the social relationship that most of the users are not following anyone else. Or those accounts are zombies accounts.
+
 3. Hamsterster Social: The trending is more or less like power-law but it is not a standard one.
+
 4. Pokec Social: Like Flicker, the points are more scattered. due to the social relationship that most of the users are not following anyone else. Or those accounts are zombies accounts.
+
 5. Youtube Social: After a few ascending, it follows the power-law. We inferred that the reason is most of the Youtebe users using Google account to log in and do the social work. As not all of the google account are active users, there are small amount of very inactive user account which combines the start of the line.
+
 6. Gnutella P2P: As in a P2P network, every node is totally equal to others, there is no way to say which one is more important or not. But there are pagerank difference is just because maybe some of the users has more files than others, but if they are normal users, no one has extraordinary numbers of files unless it has some purpose.
+
 7. JDK dependency: As described in degree distribution, JDK classes has its internal dependency following Obejct Oriented Language Design.
+
 8. Hepth Citation: There is a small ascending trend and then goes with power-law. 
 
+\subsubsection{Connected Components}
 Connected Component Experiment
 
 \begin{figure}[H]
 \begin{center}
 \begin{tabular}{cc}
      % uncomment the next lines, and give the right ps files
-     \includegraphics[width=0.95\textwidth]{FIG/cc1 2.png}
+     \includegraphics[width=0.95\textwidth]{FIG/cc12.png}
 \end{tabular}
 \caption{Result on Connected Component Experiment on 20 datasets}
 \end{center}
@@ -454,7 +474,7 @@ Connected Component Experiment
 \begin{center}
 \begin{tabular}{cc}
      % uncomment the next lines, and give the right ps files
-     \includegraphics[width=0.95\textwidth]{FIG/cc2 2.png}
+     \includegraphics[width=0.95\textwidth]{FIG/cc22.png}
 \end{tabular}
 \caption{Result on Connected Component Experiment on 20 datasets}
 \end{center}
@@ -463,12 +483,15 @@ Connected Component Experiment
 We analyze the component size and the number of components. We can observe a power relation for components if there are hundreds of components. In all the graphs, we see that either the graph is fully connected, or it has too little number of components or it follows the power-law.
 1. Fully connected graph: 
 JDK dependency is fully connected because it needs to follow JAVA rules.
+
 Spanish Text is fully connected because it is a graph from words of a book. And words in the book are continuous, which means that all the words are of course in the place one by one and must be fully connected.
+
 Caida AS is fully connected because all the ISP must be connected to the internet network, and make sure all their customers can reach out to where ever they want in the universe, so of course they are fully connected.
+
 2. Few Components:
 If a graph shows there are few components, it shows that there are strong connection relationship between nodes. Like in Digg, Hamsterster, Pokec, their users are strongly connected to each other. And for Gnutalla P2P, the number of components is just 12. In protein biology graph, it shows that the protein structure is complicated as they highly connect to each other. And in Hepph and HepTh citation, as they are focusing on papers on High Energy Physics which is really high technical, there are not so many papers like some other fields, so the paper citation is limited.
 
-
+\subsubsection{Eigenvalue Experiments}
 Eigenvalues Experiment
 
 \begin{figure}[H]
@@ -485,7 +508,7 @@ Eigenvalues Experiment
 \begin{center}
 \begin{tabular}{cc}
      % uncomment the next lines, and give the right ps files
-     \includegraphics[width=0.95\textwidth]{FIG/eigenv1.png}
+     \includegraphics[width=0.95\textwidth]{FIG/eigenv2.png}
 \end{tabular}
 \caption{Result on Eigenvalue Experiment on 20 datasets}
 \end{center}
@@ -500,6 +523,7 @@ Similar cliques occur for \textbf{soc-Youtube} which contain users' friendship. 
 
 Other datasets do not show "spokes" as clear as the above datasets, but that might come from too many nodes are included. If we only plot part of the nodes in the dataset, we might find clearer spokes. Also, in such datasets for example \textbf{bio-protein, Hepth Citation}, we can still find that points in the EE-graph form a cluster instead of randomly distribute. Thus we can infer that there are still cliques in the data, but they are loosely close, that is, nodes in cliques also connect to other nodes that are not apparently similar to nodes in the clique.
 
+\subsubsection{Triangle Count}
 Triangle Count Experiment
 
 \begin{figure}[H]
