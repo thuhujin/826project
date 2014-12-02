@@ -8,10 +8,11 @@
 \contentsline {subsection}{\numberline {2.6}Papers read by Jin Hu}{4}{subsection.2.6}
 \contentsline {section}{\numberline {3}Proposed Method}{5}{section.3}
 \contentsline {subsection}{\numberline {3.1}K-core Decomposition: Definition}{5}{subsection.3.1}
+\contentsline {subsection}{\numberline {3.2}K-core Algorithm Description}{6}{subsection.3.2}
+\contentsline {subsection}{\numberline {3.3}K-core Implementation User Mannual}{6}{subsection.3.3}
 \contentsline {section}{\numberline {4}Experiments}{6}{section.4}
-\contentsline {section}{\numberline {5}Conclusions}{20}{section.5}
-\contentsline {section}{\numberline {A}Appendix}{22}{appendix.A}
-\contentsline {subsection}{\numberline {A.1}Labor Division}{22}{subsection.A.1}
-\contentsline {subsection}{\numberline {A.2}Acknowledgement}{22}{subsection.A.2}
-\contentsline {subsection}{\numberline {A.3}Dataset and Origin}{22}{subsection.A.3}
-\contentsline {subsection}{\numberline {A.4}Code for K-core}{23}{subsection.A.4}
+\contentsline {section}{\numberline {5}Conclusions}{31}{section.5}
+\contentsline {section}{\numberline {A}Appendix}{32}{appendix.A}
+\contentsline {subsection}{\numberline {A.1}Labor Division}{32}{subsection.A.1}
+\contentsline {subsection}{\numberline {A.2}Acknowledgement}{32}{subsection.A.2}
+\contentsline {subsection}{\numberline {A.3}Dataset and Origin}{32}{subsection.A.3}
